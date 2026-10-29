@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上岸计划 · 求职规则引擎</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B1220'/%3E%3Cpath d='M8 20.5l5 5 11-13' stroke='%23F5B942' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0B1220; --bg-2:#0F172A; --card:#111B33; --card-2:#0D1628;
+  --ink:#E8EDF7; --ink-2:#9AA7BE; --ink-3:#5C6B8A;
+  --gold:#F5B942; --gold-2:#D99A2B; --teal:#2DD4BF; --red:#F87171;
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+::selection{background:rgba(245,185,66,.25);color:var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+/* 背景网格与噪点层 */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 75%)}
+.bg-glow{position:fixed;top:-220px;left:50%;transform:translateX(-50%);width:880px;height:520px;z-index:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(245,185,66,.14) 0%,rgba(45,212,191,.06) 40%,transparent 70%);filter:blur(10px)}
+/* ===== 顶栏 ===== */
+.nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,#1D2B4F,#0F172A);border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand-mark svg{width:20px;height:20px}
+.brand-name{font-size:16px;font-weight:800;letter-spacing:.4px}
+.brand-name em{font-style:normal;color:var(--gold)}
+.brand-sub{font-size:11px;color:var(--ink-3);letter-spacing:1.6px;text-transform:uppercase;margin-top:-1px}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-link{font-size:13px;color:var(--ink-2);padding:8px 12px;border-radius:8px;transition:color .15s}
+.nav-link:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-weight:700;border-radius:10px;transition:all .15s;white-space:nowrap}
+.btn-sm{padding:9px 15px;font-size:13px}
+.btn-lg{padding:14px 26px;font-size:15px}
+.btn-gold{background:var(--gold);color:#1A1203}
+.btn-gold:hover{background:#FFC85C;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+/* ===== Hero ===== */
+.hero{position:relative;z-index:1;padding:64px 0 40px;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:2px;color:var(--gold);border:1px solid rgba(245,185,66,.3);background:rgba(245,185,66,.07);padding:6px 14px;border-radius:999px;margin-bottom:22px}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(245,185,66,.18)}
+.hero h1{font-size:clamp(30px,6vw,54px);font-weight:900;line-height:1.16;letter-spacing:-.5px}
+.hero h1 .accent{background:linear-gradient(92deg,var(--gold) 0%,#FFD98A 60%,var(--teal) 130%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{max-width:640px;margin:18px auto 0;font-size:clamp(14px,2vw,16.5px);color:var(--ink-2);line-height:1.8}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.hero-note{font-size:12px;color:var(--ink-3);margin-top:16px}
+/* 数据带 */
+.statband{position:relative;z-index:1;max-width:1000px;margin:46px auto 0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 22px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;text-align:center;transition:border-color .2s,transform .2s}
+.stat:hover{border-color:rgba(245,185,66,.4);transform:translateY(-2px)}
+.stat .num{font-size:clamp(26px,4vw,36px);font-weight:900;letter-spacing:-.5px;line-height:1.1}
+.stat .num.gold{color:var(--gold)}
+.stat .num.teal{color:var(--teal)}
+.stat .lab{font-size:11.5px;color:var(--ink-3);margin-top:5px;letter-spacing:.6px}
+.stat .sub{font-size:11px;color:var(--ink-2);margin-top:2px}
+/* ===== 区块通用 ===== */
+.sec{position:relative;z-index:1;padding:72px 0 0}
+.sec-head{text-align:center;margin-bottom:38px}
+.sec-kicker{font-size:11.5px;letter-spacing:2.4px;color:var(--teal);text-transform:uppercase;margin-bottom:10px;font-weight:700}
+.sec-title{font-size:clamp(23px,3.6vw,34px);font-weight:900;letter-spacing:-.3px}
+.sec-desc{max-width:600px;margin:12px auto 0;font-size:14px;color:var(--ink-2);line-height:1.8}
+/* 规则六组 */
+.rules{display:grid;grid-template-columns:1fr;gap:14px;max-width:1000px;margin:0 auto}
+.rule{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.rule:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.rule::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rule-c,var(--gold)),transparent 70%);opacity:.85}
+.rule-ico{width:38px;height:38px;border-radius:11px;background:var(--rule-bg,rgba(245,185,66,.1));display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.rule-ico svg{width:20px;height:20px;stroke:var(--rule-c,var(--gold))}
+.rule-t{font-size:15.5px;font-weight:800;margin-bottom:4px}
+.rule-en{font-size:11px;color:var(--ink-3);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.rule-main{font-size:20px;font-weight:900;color:var(--gold);margin-bottom:10px;letter-spacing:-.3px}
+.rule-main .unit{font-size:12.5px;font-weight:600;color:var(--ink-2);margin-left:4px}
+.rule-desc{font-size:13px;color:var(--ink-2);line-height:1.75}
+.rule-desc b{color:var(--ink);font-weight:700}
+.rule-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.rtag{font-size:11px;color:var(--ink-2);background:rgba(255,255,255,.05);border:1px solid var(--line);padding:3px 9px;border-radius:999px}
+.rtag.off{color:var(--ink-3);text-decoration:line-through;text-decoration-color:rgba(248,113,113,.55)}
+/* 三段工作流 */
+.flow{display:grid;grid-template-columns:1fr;gap:14px;max-width:1000px;margin:0 auto}
+.fstep{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;display:flex;gap:16px;align-items:flex-start}
+.fstep-num{width:34px;height:34px;border-radius:10px;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.3);color:var(--teal);font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fstep-t{font-size:15px;font-weight:800;margin-bottom:5px}
+.fstep-d{font-size:13px;color:var(--ink-2);line-height:1.75}
+.fstep-d code{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;color:var(--gold);font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace}
+/* 反馈闭环时间轴 */
+.loop{max-width:900px;margin:0 auto}
+.loop-steps{display:grid;grid-template-columns:1fr;gap:0;position:relative}
+.loop-steps::before{content:"";position:absolute;left:17px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,rgba(245,185,66,.5),rgba(45,212,191,.5))}
+.lstep{position:relative;padding:0 0 26px 52px}
+.lstep:last-child{padding-bottom:0}
+.lstep .ldot{position:absolute;left:9px;top:6px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--gold);z-index:1}
+.lstep:nth-child(2) .ldot{border-color:var(--teal)}
+.lstep:nth-child(3) .ldot{border-color:var(--gold)}
+.lstep:nth-child(4) .ldot{border-color:var(--teal)}
+.lstep-t{font-size:15px;font-weight:800;margin-bottom:4px}
+.lstep-d{font-size:13px;color:var(--ink-2);line-height:1.7}
+.lstep .lmeta{font-size:11.5px;color:var(--ink-3);margin-top:5px;letter-spacing:.4px}
+/* FAQ */
+.faq{max-width:760px;margin:0 auto}
+.faq-item{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:var(--line-2)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;background:none;border:none;cursor:pointer;text-align:left;color:var(--ink);font-size:14px;font-weight:700}
+.faq-q .plus{width:22px;height:22px;border-radius:7px;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s,background .2s;font-size:13px;color:var(--ink-2)}
+.faq-item.open .plus{transform:rotate(45deg);background:rgba(245,185,66,.12);border-color:rgba(245,185,66,.4);color:var(--gold)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease}
+.faq-a-inner{padding:0 18px 16px;font-size:13px;color:var(--ink-2);line-height:1.8;border-top:1px solid var(--line);padding-top:12px}
+/* 底部 CTA */
+.final{position:relative;z-index:1;padding:84px 0 60px;text-align:center}
+.final-box{max-width:860px;margin:0 auto;background:linear-gradient(150deg,rgba(245,185,66,.10),rgba(45,212,191,.05) 60%,transparent);border:1px solid var(--line-2);border-radius:22px;padding:44px 26px}
+.final h2{font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.3px}
+.final p{max-width:560px;margin:12px auto 0;font-size:14px;color:var(--ink-2);line-height:1.8}
+.final .btn{margin-top:26px}
+.final .download-hint{font-size:12px;color:var(--ink-3);margin-top:14px}
+.footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:26px 0 40px;text-align:center}
+.footer .f-ver{font-size:11.5px;color:var(--ink-3)}
+.footer .f-line{font-size:11.5px;color:var(--ink-3);margin-top:6px;line-height:1.7}
+/* 下载触发 */
+.hidden-file{display:none}
+/* ===== 响应式 ===== */
+@media (min-width:768px){
+  .rules{grid-template-columns:repeat(3,1fr)}
+  .flow{grid-template-columns:repeat(3,1fr)}
+  .fstep{flex-direction:column}
+  .statband{grid-template-columns:repeat(6,1fr)}
+  .loop-steps::before{left:50%;top:18px;bottom:auto;width:auto;height:2px;transform:translateX(-50%);background:linear-gradient(90deg,rgba(245,185,66,.5),rgba(45,212,191,.5))}
+  .loop-steps{grid-template-columns:repeat(4,1fr);gap:18px}
+  .lstep{padding:56px 10px 0;text-align:center}
+  .lstep .ldot{left:50%;top:9px;transform:translateX(-50%)}
+  .sec{padding-top:88px}
+}
+@media (min-width:1024px){
+  .wrap{padding:0 28px}
+}
+/* 滚动显现 */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<!-- ===== 顶栏 ===== -->
+<header class="nav wrap">
+  <div class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#F5B942" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5 5 11-13"/></svg>
+    </div>
+    <div>
+      <div class="brand-name">上岸计划 <em>SHANG'AN</em></div>
+      <div class="brand-sub">Job Rule Engine</div>
+    </div>
+  </div>
+  <nav class="nav-actions">
+    <a class="nav-link" href="#rules">规则</a>
+    <a class="nav-link" href="#flow">使用</a>
+    <a class="nav-link" href="#faq">FAQ</a>
+    <button class="btn btn-sm btn-gold" data-download>下载模板</button>
+  </nav>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow"><span class="dot"></span>求职自动化工作台 · 规则模板</div>
+    <h1>把求职标准，<br>变成一台<span class="accent">能跑的引擎</span></h1>
+    <p class="hero-sub">不是给你推更多岗位，而是把不合适的岗位挡在门外。<br>通勤实测、薪资底线、作息硬要求、外包黑名单——全部参数化，可分享、可导入、随时改。</p>
+    <div class="hero-cta">
+      <button class="btn btn-lg btn-gold" data-download>下载规则模板 <span aria-hidden="true">JSON</span></button>
+      <a class="btn btn-lg btn-ghost" href="#rules">看这六组规则</a>
+    </div>
+    <p class="hero-note">纯本地文件 · 无需注册 · 不收集任何个人数据</p>
+  </div>
+</section>
+
+<!-- ===== 数据带 ===== -->
+<div class="statband" id="stats">
+  <div class="stat rv"><div class="num gold">110</div><div class="lab">岗位库容量</div><div class="sub">已入库候选</div></div>
+  <div class="stat rv"><div class="num teal">6</div><div class="lab">硬规则组</div><div class="sub">通勤/薪资/作息…</div></div>
+  <div class="stat rv"><div class="num gold">38</div><div class="lab">排除角色词</div><div class="sub">客服/销售/外呼…</div></div>
+  <div class="stat rv"><div class="num teal">110</div><div class="lab">黑名单企业</div><div class="sub">外包46 + 公司64</div></div>
+  <div class="stat rv"><div class="num gold">30<span style="font-size:13px">min</span></div><div class="lab">骑行通勤上限</div><div class="sub">高德门址实测</div></div>
+  <div class="stat rv"><div class="num teal">3</div><div class="lab">求职主线</div><div class="sub">高/中/低优先级</div></div>
+</div>
+
+<!-- ===== 规则六组 ===== -->
+<section class="sec" id="rules">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-kicker">The Six Gates</div>
+      <h2 class="sec-title">六组规则，六道闸门</h2>
+      <p class="sec-desc">每个岗位要进你的"待投清单"，得过完这六关。规则全部来自一份可编辑的 JSON——改数字，闸门就变。</p>
+    </div>
+    <div class="rules">
+      <div class="rule rv" style="--rule-c:#F5B942;--rule-bg:rgba(245,185,66,.1)">
+        <div class="rule-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+        <div class="rule-t">通勤闸门</div>
+        <div class="rule-en">Commute</div>
+        <div class="rule-main">骑行 30 <span class="unit">分钟</span> 或 公交 60 <span class="unit">分钟</span></div>
+        <div class="rule-desc">骑行、公交地铁<b>任一达标</b>即可。时间必须按岗位详情页的<b>具体门址</b>高德实测，禁止按片区估算——看着近，实测往往超时。</div>
+      </div>
+      <div class="rule rv" style="--rule-c:#2DD4BF;--rule-bg:rgba(45,212,191,.1)">
+        <div class="rule-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6.5c0-2-2.2-3.5-5-3.5S7 4.5 7 6.5 9 10 12 10s5 1.5 5 3.5-2.2 3.5-5 3.5-5-1.5-5-3.5"/></svg></div>
+        <div class="rule-t">薪资闸门</div>
+        <div class="rule-en">Salary</div>
+        <div class="rule-main">到手 ≥ 5000 <span class="unit">元/月</span></div>
+        <div class="rule-desc">按<b>到手</b>算，不是税前。5000 以下不推，超过 15000 也要警惕（常是销售或外包画饼）。税前 5–7K 才值得投递前再确认。</div>
+      </div>
+      <div class="rule rv" style="--rule-c:#F5B942;--rule-bg:rgba(245,185,66,.1)">
+        <div class="rule-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></div>
+        <div class="rule-t">作息闸门</div>
+        <div class="rule-en">Schedule</div>
+        <div class="rule-main">周末至少休 1 天</div>
+        <div class="rule-desc">不接受轮班制，<b>法定节假日要正常休</b>。无休、夜班、轮休的岗位直接排除——工作不是全部。</div>
+      </div>
+      <div class="rule rv" style="--rule-c:#2DD4BF;--rule-bg:rgba(45,212,191,.1)">
+        <div class="rule-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></div>
+        <div class="rule-t">排除角色闸门</div>
+        <div class="rule-en">Exclude</div>
+        <div class="rule-main">38 <span class="unit">个关键词</span></div>
+        <div class="rule-desc">岗位名命中即跳过：客服、主播、销售、服务员、外卖、电话外呼、网销、工单、纯体力、经常出差……词表可自己加减。</div>
+        <div class="rule-tags"><span class="rtag">客服</span><span class="rtag">主播</span><span class="rtag">销售</span><span class="rtag">外呼</span><span class="rtag">网销</span><span class="rtag">工单</span><span class="rtag off">剪辑</span></div>
+      </div>
+      <div class="rule rv" style="--rule-c:#F5B942;--rule-bg:rgba(245,185,66,.1)">
+        <div class="rule-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="rule-t">技能门槛</div>
+        <div class="rule-en">Skill Gate</div>
+        <div class="rule-main">硬技能 → 不推</div>
+        <div class="rule-desc">要求剪辑、UI、写代码、英语四六级读写文档的岗位一律不推；但有<b>豁免词</b>（可培训、零基础、接受无经验、不会可教）就能放行。</div>
+        <div class="rule-tags"><span class="rtag">剪辑/PR/AE</span><span class="rtag">UI设计</span><span class="rtag">代码开发</span><span class="rtag">CET-4/6</span><span class="rtag">可培训放行</span><span class="rtag">零基础放行</span></div>
+      </div>
+      <div class="rule rv" style="--rule-c:#2DD4BF;--rule-bg:rgba(45,212,191,.1)">
+        <div class="rule-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="rule-t">黑名单闸门</div>
+        <div class="rule-en">Blacklist</div>
+        <div class="rule-main">110 <span class="unit">家企业</span></div>
+        <div class="rule-desc">外包公司 46 家 + 公司黑名单 64 家。默认<b>只作背景参考不硬拦</b>（有些外包岗也双休达标），需要时可一键开启拦截。</div>
+        <div class="rule-tags"><span class="rtag">外包 46</span><span class="rtag">黑名单 64</span><span class="rtag">默认参考</span><span class="rtag">可开启拦截</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 三段工作流 ===== -->
+<section class="sec" id="flow">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-kicker">Get Started</div>
+      <h2 class="sec-title">三步，用上别人的规则</h2>
+      <p class="sec-desc">规则模板是一个 JSON 文件。你不需要会编程——记事本改几个数字，导入即生效。</p>
+    </div>
+    <div class="flow">
+      <div class="fstep rv">
+        <div class="fstep-num">1</div>
+        <div>
+          <div class="fstep-t">拿到模板</div>
+          <div class="fstep-d">点右上角「下载模板」，得到 <code>rules-template.json</code>。别人发给你的也行。</div>
+        </div>
+      </div>
+      <div class="fstep rv">
+        <div class="fstep-num">2</div>
+        <div>
+          <div class="fstep-t">改参数</div>
+          <div class="fstep-d">用记事本打开，找到想改的数字：骑行上限、到手底线、每周休几天……只改数字，别动引号和括号。</div>
+        </div>
+      </div>
+      <div class="fstep rv">
+        <div class="fstep-num">3</div>
+        <div>
+          <div class="fstep-t">导入生效</div>
+          <div class="fstep-d">在工作台「规则中心 → 导入模板」选文件，先预览"会改什么、多少岗位达标变化"，确认后规则立刻生效。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 反馈闭环 ===== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-kicker">Feedback Loop</div>
+      <h2 class="sec-title">规则会自我进化</h2>
+      <p class="sec-desc">这不是一份写死的文件。每一次投递反馈，都会回流成新的规则。</p>
+    </div>
+    <div class="loop">
+      <div class="loop-steps">
+        <div class="lstep rv">
+          <span class="ldot"></span>
+          <div class="lstep-t">每天推岗</div>
+          <div class="lstep-d">6 类来源抓取候选：招聘平台、高校就业网、政企官网、企业官网、公众号、兜底搜索。</div>
+          <div class="lmeta">来源构成 · 至少 3 条非平台岗</div>
+        </div>
+        <div class="lstep rv">
+          <span class="ldot"></span>
+          <div class="lstep-t">你投递、你反馈</div>
+          <div class="lstep-d">一键标记投递状态：未投 / 已投 / 已回复 / 面试 / 婉拒 / 入职。全程追踪。</div>
+          <div class="lmeta">多维表格记录 · 卡片推送</div>
+        </div>
+        <div class="lstep rv">
+          <span class="ldot"></span>
+          <div class="lstep-t">被拒原因沉淀</div>
+          <div class="lstep-d">婉拒 ≥ 2 次的同类要求，自动进"排除清单"——同一类坑不再踩第二次。</div>
+          <div class="lmeta">learning · 累计婉拒统计</div>
+        </div>
+        <div class="lstep rv">
+          <span class="ldot"></span>
+          <div class="lstep-t">规则升级</div>
+          <div class="lstep-d">新规则写回规则库，下一轮推岗立即按新口径过滤。规则越用越准。</div>
+          <div class="lmeta">v5.2 · 持续迭代</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-kicker">FAQ</div>
+      <h2 class="sec-title">常见问题</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">这是网站、APP，还是系统？<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">都不是。它是一套<b>求职自动化工作流系统</b>：本地的岗位库 + 规则引擎 + 飞书推送链路。模板文件只是这套系统里"规则"的导出物，可以单独分享给别人用。</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">我不会编程，能用吗？<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">能。规则模板是纯 JSON，只用记事本改数字；导入和预览都在工作台界面里点按钮完成，不需要写一行代码。</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">改坏了文件怎么办？<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">重新下载一份默认模板，或在规则中心点「恢复默认」。每次保存前都有预览确认，误操作的概率很低。</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">导入模板会影响我原来的规则吗？<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">不会。模板只写入工作台的"可调规则层"（override），权威规则文件永远保持原始参考，不会被覆盖。想回到原来的口径，恢复默认即可。</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">模板里有我的隐私吗？<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">没有。导出模板已经去掉全部个人信息：不包含简历、账号、地理位置坐标等数据，只保留规则参数和通用关键词，可以放心分享。</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">黑名单为什么不直接拦截？<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">作者的口径：外包/黑名单先当"背景参考"看，不硬性一刀切——因为有些外包岗也有正经双休、薪资达标。你可以按自己的情况，在工作台里一键开启拦截。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 底部 CTA ===== -->
+<section class="final">
+  <div class="wrap">
+    <div class="final-box rv">
+      <h2>这份规则，本来只属于一个人。<br>现在它可以属于任何需要它的人。</h2>
+      <p>下载模板，改几个数字，就是你的求职标准。规则是你的——永远改得动，永远能分享。</p>
+      <button class="btn btn-lg btn-gold" data-download>下载规则模板（JSON）</button>
+      <div class="download-hint">文件会保存到你的下载文件夹 · 配套使用说明见工作台目录</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="f-ver">上岸计划 · 规则模板 v1 · 规则引擎 v5.2（2026-10-18）</div>
+    <div class="f-line">通勤时间为高德门址实测口径 · 所有数字来自真实抓取与验证 · 岗位信息请以平台当前页面为准</div>
+  </div>
+</footer>
+
+<input type="file" class="hidden-file" id="dlHelper" accept=".json" style="display:none">
+
+<script>
+/* ===== 滚动显现 ===== */
+(function(){
+  var els=document.querySelectorAll(".rv");
+  if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in")});return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}});
+  },{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+/* ===== FAQ 折叠 ===== */
+document.querySelectorAll(".faq-q").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var item=btn.parentElement,ans=item.querySelector(".faq-a"),open=item.classList.contains("open");
+    document.querySelectorAll(".faq-item.open").forEach(function(o){if(o!==item){o.classList.remove("open");o.querySelector(".faq-a").style.maxHeight=null;o.querySelector(".faq-q").setAttribute("aria-expanded","false")}});
+    item.classList.toggle("open",!open);
+    btn.setAttribute("aria-expanded",String(!open));
+    ans.style.maxHeight=open?null:ans.scrollHeight+"px";
+  });
+});
+
+/* ===== 下载模板 ===== */
+var TPL = {
+  "name":"上岸计划·求职筛选规则模板",
+  "format_version":1,
+  "description":"由『上岸计划』工作台导出的通用求职筛选规则。导入后可按自己的城市/通勤/薪资/作息修改参数，不需要会写规则引擎。",
+  "commute":{"bike_max_min":30,"transit_max_min":60,"note":"通勤上限（分钟）：骑行 OR 公交地铁任一达标即可；需用高德门址实测，禁止按片区估算。"},
+  "salary":{"min_take_home":5000,"max_push":15000,"note":"月到手薪资底线 / 推送上限（元）。"},
+  "work_schedule":{"weekend_rest_min_days":1,"no_rotation":true,"legal_holidays_off":true,"note":"作息硬要求：每周至少休 N 天、不接受轮班、法定节假日休。"},
+  "exclude_roles":["客服","主播","销售","服务员","普通","外卖","送货员","网销","处理工单","纯体力","电话外呼","强销售","经常出差","课程顾问","社群转化","商务BD","商务拓展","客户转化","续课顾问","学习规划师","游戏代练","游戏陪玩","游戏主播","直播带货","猎头顾问","猎头助理","RPO招聘","日结","兼职日结","小时工","储备经理(餐饮)","前厅后厨","门店运营","机器狗销售","无人机销售","渠道代理","抖音直播运营(销售向)","直播运营(高提成)"],
+  "skill_gate":{"user_lacks":["剪辑(剪映/PR/AE/达芬奇/FCP/调色/转场/蒙版/特效/混剪/成片)","UI/平面设计","代码开发","英语CET-4/CET-6","读写全英文业务文档"],"block_keywords_count":39,"override_pass_keywords":["接受无经验","可培训","不会可教","零基础","新手友好","无经验可","不要求作品","无需经验","可带教"],"note":"求职者不具备的硬技能 + 硬性不推关键词 + 豁免词（命中豁免词可放行）。"},
+  "blacklists":{"outsource_companies":["万宝盛华","上海仁联","上海思芮","网萌","中电金信","中科创达","中软国际","亚信科技","京北方","人瑞","亿达信息","位来","佰钧成","勤为科技","博彦科技","叁维职途","启达优才","怡卓","四川观察合创新媒","外企德科","崃盛","微创软件","思贤","慧博云通","拓尔思","新大瀚","易宝软件","杰成人力","沃英","法本","泰盈","润和软件","澜聘","澳鹏","科锐国际","科锐尔","维度信息","维音","蕾茗","诚迈科技","软通动力","金慧科技","金沙人力","青蓝致远","首聘","鸿联九五"],"company_blacklist":[],"note":"外包公司 46 家 + 公司黑名单（导入后可按需开启拦截开关）。"},
+  "directions":[{"name":"企业培训/教研课程/内容运营","priority":"high"},{"name":"AI文字类非技术岗","priority":"medium"},{"name":"行政/国企编外/事业单位","priority":"low"}],
+  "learned_exclusion":[],
+  "override":{"bike_max_min":30,"transit_max_min":60,"salary_min_take_home":5000,"salary_max_push":15000,"weekend_rest_min_days":1,"block_outsource":false,"block_company_blacklist":false,"enabled":true}
+};
+function downloadTemplate(){
+  var blob=new Blob([JSON.stringify(TPL,null,2)],{type:"application/json;charset=utf-8"});
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  var d=new Date(),pad=function(n){return String(n).padStart(2,"0")};
+  a.download="上岸计划-规则模板-"+d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())+".json";
+  document.body.appendChild(a);a.click();a.remove();
+  URL.revokeObjectURL(a.href);
+}
+document.querySelectorAll("[data-download]").forEach(function(b){b.addEventListener("click",downloadTemplate)});
+</script>
+</body>
+</html>
