@@ -1,0 +1,1183 @@
+{
+ "rules_version": "3.0",
+ "generated_at": "2026-09-18",
+ "total": 72,
+ "items": [
+  {
+   "title": "AI数据标注（双休+早十晚七+五险一金）",
+   "company": "MiniMax",
+   "salary": "4-5K",
+   "worktime": "双休",
+   "note": "⚠招聘方为怡卓人力（外包黑名单）代发，客户是MiniMax；投递前先确认是否劳务派遣 ｜ 高德实测❌超圈：骑行31分钟/地铁68分钟（瑞鑫时代大厦实测）",
+   "golden": {
+    "pushable": "no",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "fail",
+    "blocks": [
+     "外包黑名单",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AI模型训练师（内容评估方向）",
+   "company": "北京知道创宇",
+   "salary": "5-6K",
+   "worktime": "双休",
+   "note": "智联搜索已找不到该成都岗（仅北京1岗），时效性存疑，投递前先确认 ｜ 高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘；投递",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "warn",
+    "blocks": []
+   }
+  },
+  {
+   "title": "大模型数据标注-文本/复杂任务（成都）",
+   "company": "腾讯智研（重庆）",
+   "salary": "10-15K",
+   "worktime": "未注明",
+   "note": "腾讯体系公司直招，标注岗高薪，可争取 ｜ 高德实测✅骑行19分钟（腾讯成都大厦）",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AIGC视频标注与评估研究员",
+   "company": "腾讯智研（重庆）",
+   "salary": "10-15K",
+   "worktime": "未注明",
+   "note": "腾讯体系直招，AI视频标注评估岗 ｜ 高德实测✅骑行19分钟（腾讯成都大厦）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "快手大模型标注运营",
+   "company": "快手",
+   "salary": "8-14K",
+   "worktime": "未注明",
+   "note": "港股上市大厂直招，本日新增，优先看 ｜ 高德实测✅骑行17分钟（天府软件园代表点）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "AI训练师-视频类（双休可小白）",
+   "company": "成都小咖邦智能科技",
+   "salary": "5-6K",
+   "worktime": "双休",
+   "note": "高德实测❌超圈：骑行69分钟（双楠代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "fail",
+    "blocks": [
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AI视频内容质检专员（双休纯文职）",
+   "company": "图虫",
+   "salary": "3-6K",
+   "worktime": "双休",
+   "note": "字节系图虫，直招文职质检 ｜ 高德实测❌超圈：骑行62分钟",
+   "golden": {
+    "pushable": "no",
+    "match": "medium",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "数据标注AI训练师（双休接收小白）",
+   "company": "某成都大型AI公司（猎头代发）",
+   "salary": "5-8K",
+   "worktime": "双休",
+   "note": "猎头岗，投递前确认真实甲方 ｜ 高德实测⏳地址未注明，通勤待确认（投递前问清办公地址）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "high",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "unknown",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "数据标注（成都 接受0经验应届生）",
+   "company": "某上海互联网上市公司（猎头代发）",
+   "salary": "6-7K·13薪",
+   "worktime": "未注明",
+   "note": "猎头岗，核实公司与外包属性 ｜ 高德实测⏳地址未注明，通勤待确认（投递前问清办公地址）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "high",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "unknown",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "影视大模型标注与评测",
+   "company": "贵州华智云谷数据产业",
+   "salary": "8-20K",
+   "worktime": "未注明",
+   "note": "注册地在外省，投递前核实成都办公点 ｜ 高德实测✅骑行17分钟（天府软件园代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "reject",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": [
+     "薪资不达标"
+    ]
+   }
+  },
+  {
+   "title": "数据标注（双休五险一金）",
+   "company": "某计算机软件公司（猎头代发）",
+   "salary": "4-6K",
+   "worktime": "双休",
+   "note": "猎头岗，双流通勤近，可联系确认 ｜ 高德实测⏳地址未注明，通勤待确认（投递前问清办公地址）",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "unknown",
+    "blocks": []
+   }
+  },
+  {
+   "title": "ai数据标注员",
+   "company": "成都羽之墨科技",
+   "salary": "4-6K",
+   "worktime": "未注明",
+   "note": "高德实测❌超圈：地铁55分钟（石羊场代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AI数据标注专员",
+   "company": "成都零夏八度科技",
+   "salary": "5-7K",
+   "worktime": "未注明",
+   "note": "高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘；投递前确认具体地址",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "warn",
+    "blocks": []
+   }
+  },
+  {
+   "title": "6k+AI视频标注师",
+   "company": "四川亿和众联网络科技",
+   "salary": "6-7K",
+   "worktime": "双休",
+   "note": "高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘；投递前确认具体地址",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "warn",
+    "blocks": []
+   }
+  },
+  {
+   "title": "双休视频内容标注文员（早十晚七）",
+   "company": "沃英（河北）科技",
+   "salary": "6-7K",
+   "worktime": "双休",
+   "note": "高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘；投递前确认具体地址",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "warn",
+    "blocks": []
+   }
+  },
+  {
+   "title": "视频数据标注专员",
+   "company": "成都英顺世汀科技",
+   "salary": "4-7K",
+   "worktime": "双休",
+   "note": "高德实测⏳地址未注明，通勤待确认（投递前问清办公地址）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "high",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "unknown",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "AI视频Caption标注质检",
+   "company": "景烁科技",
+   "salary": "5-7K",
+   "worktime": "未注明",
+   "note": "高德实测✅骑行17分钟（高新区代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "medium",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AIGC美学标注",
+   "company": "维杰特",
+   "salary": "5-8K",
+   "worktime": "未注明",
+   "note": "高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "视频内容AI数据标注师（13薪）",
+   "company": "四川槿沐言科技",
+   "salary": "4-5K·13薪",
+   "worktime": "未注明",
+   "note": "高德实测✅骑行20分钟（新会展中心代表点）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "high",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "视频内容AI数据标注师（周末双休）",
+   "company": "淮安霖嘉网络科技",
+   "salary": "4-6K",
+   "worktime": "双休",
+   "note": "高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AIGC视频创作 · AI漫剧助理（双休接受无经验）",
+   "company": "四川时优锐播科技",
+   "salary": "6-8K",
+   "worktime": "双休",
+   "note": "明确接受无经验，可做AIGC入行跳板 ｜ 高德实测❌超圈：骑行67分钟",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "fail",
+    "blocks": [
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "抽卡师-AIGC",
+   "company": "让我想想",
+   "salary": "7-8K",
+   "worktime": "未注明",
+   "note": "公司名与AI业务对不上，投递前查企查查 ｜ 高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AIGC影视制作师（短剧/漫剧/短片）",
+   "company": "西藏易境旅游景观规划设计四川分公司",
+   "salary": "6-10K",
+   "worktime": "双休",
+   "note": "旅游景观设计公司做AIGC影视，核实公司背景 ｜ 高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘；投递前确认具体地址",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "warn",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "AI短剧抽卡师",
+   "company": "成都瑞泽一品房管家",
+   "salary": "4-8K",
+   "worktime": "双休",
+   "note": "房产中介公司发AI短剧岗，投递前核实 ｜ 高德实测⏳地址未注明，通勤待确认（投递前问清办公地址）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "unknown",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "视频生成师（AI短剧）",
+   "company": "成都瑞泽一品房管家",
+   "salary": "4-8K",
+   "worktime": "双休",
+   "note": "同上，建议核实公司实际业务 ｜ 高德实测⏳地址未注明，通勤待确认（投递前问清办公地址）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "unknown",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "AI短剧制作人",
+   "company": "成都集佳源科技",
+   "salary": "5-8K",
+   "worktime": "未注明",
+   "note": "高德实测❌超圈：地铁55分钟（石羊场代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "剧本编剧（AI短剧）",
+   "company": "成都趣创数航科技",
+   "salary": "6-10K",
+   "worktime": "未注明",
+   "note": "高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘；投递前确认具体地址",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "warn",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "高级AIGC制作师（周末双休）",
+   "company": "成都银河纪元科技",
+   "salary": "8-10K",
+   "worktime": "双休",
+   "note": "高德实测✅骑行22分钟（华阳代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AI生成师 / AI漫剧制作",
+   "company": "成都腾源梦山传媒",
+   "salary": "5-8K·13薪",
+   "worktime": "双休",
+   "note": "高德实测⏳地址未注明，通勤待确认（投递前问清办公地址）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "unknown",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "AI视频制作",
+   "company": "海南港澳资讯",
+   "salary": "4-6K",
+   "worktime": "未注明",
+   "note": "高德实测❌岗位已关闭（港澳资讯·奥克斯广场，2026-09-17复核）",
+   "golden": {
+    "pushable": "no",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "ai动漫短剧剪辑",
+   "company": "成都鲁达计算机科技",
+   "salary": "5-8K",
+   "worktime": "未注明",
+   "note": "双流通勤近，剪辑岗可当AIGC入行 ｜ 高德实测⏳地址未注明，通勤待确认（投递前问清办公地址）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "unknown",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "AI测试实习生",
+   "company": "四川凌速科技",
+   "salary": "300-400元/天",
+   "worktime": "实习",
+   "note": "实习日薪，可作测试方向入门 ｜ 高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "reject",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": [
+     "薪资不达标"
+    ]
+   }
+  },
+  {
+   "title": "AI研训师（实习可转正）",
+   "company": "重庆创宇后天信息技术",
+   "salary": "150-200元/天",
+   "worktime": "实习",
+   "note": "实习日薪岗，测试/评测方向入门 ｜ 高德实测✅骑行17分钟（天府软件园代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "reject",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": [
+     "薪资不达标"
+    ]
+   }
+  },
+  {
+   "title": "AI测试助理",
+   "company": "广州玉氏科技",
+   "salary": "4-12K",
+   "worktime": "未注明",
+   "note": "超出骑行圈，地铁约40分钟，可选 ｜ 高德实测❌超圈：骑行62分钟（万年场代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "medium",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AIGC影视内容评测（Prompt标注）",
+   "company": "河南润强网络科技",
+   "salary": "8-12K",
+   "worktime": "未注明",
+   "note": "高德实测❌超圈：骑行69分钟（双楠代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AIGC图像标注与评估研究员",
+   "company": "腾讯智研（重庆）",
+   "salary": "10-15K",
+   "worktime": "未注明",
+   "note": "无需经验，图像美学评估方向，与AI视频岗同体系，51job显示已投递 ｜ 高德实测✅骑行19分钟（腾讯成都大厦）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AIGC世界模型标注与评估研究员",
+   "company": "腾讯智研（重庆）",
+   "salary": "10-15K",
+   "worktime": "未注明",
+   "note": "无需经验，要求英语读写CET-6优先+理工科背景，视频深度描述/Prompt/评测 ｜ 高德实测✅骑行19分钟（腾讯成都大厦）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "大模型精标-图像",
+   "company": "腾讯智研（重庆）",
+   "salary": "10-15K",
+   "worktime": "未注明",
+   "note": "无需经验，图像精标与美学评估，美术/传媒/设计专业优先 ｜ 高德实测✅骑行19分钟（腾讯成都大厦）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "图文视频标注专员",
+   "company": "金视汀网络科技",
+   "salary": "5-8K",
+   "worktime": "未注明",
+   "note": "过渡性质·天府TV授权内容审核平台，纯标注+审核；作息投递前确认 ｜ 高德实测❌超圈：骑行66分钟",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AI审核标注员+双休",
+   "company": "成都华迈广告",
+   "salary": "5-6K",
+   "worktime": "双休",
+   "note": "自查·广告公司发AI岗名字业务对不上，投递前确认；通勤近 ｜ 高德实测✅骑行22分钟（华阳代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "Ai图片校订/文本审核",
+   "company": "成都麦田外科技",
+   "salary": "5-8K",
+   "worktime": "未注明",
+   "note": "自查·小公司(1-49人)，AI文本/图片校订，通勤近 ｜ 高德实测✅骑行22分钟（华阳代表点）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "双休-数据标注员",
+   "company": "成都热热科技",
+   "salary": "4-5K",
+   "worktime": "双休",
+   "note": "薪资略低于目标到手可能不足5K，确认绩效；内容审核+标注 ｜ 高德实测✅地铁49分钟（边缘达标，含步行）",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "ai训练师/数据标注",
+   "company": "四川任由行通信科技有限公司",
+   "salary": "7-9K·13薪",
+   "worktime": "未注明",
+   "note": "13薪，通信领域多模态标注质检，经验不限大专即可，通勤近 ｜ 高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘；投递前确认具",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "high",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "warn",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "AIGC短剧运营",
+   "company": "四川华宣传媒集团有限公司",
+   "salary": "7-10K",
+   "worktime": "未注明",
+   "note": "AI竖屏短剧初创团队核心岗有分红；需1年以上短视频运营经验，投递前确认作息 ｜ 高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "warn",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AI测试工程师（接受小白）",
+   "company": "四川云引新途科技有限公司",
+   "salary": "6-10K",
+   "worktime": "双休",
+   "note": "边缘通勤；接受小白，双休朝九晚六；AI测试方向入门 ｜ 高德实测❌超圈：骑行62分钟（万年场代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "短视频内容专员（AI短视频方向）",
+   "company": "华派生物技术(集团)股份有限公司",
+   "salary": "6-8K",
+   "worktime": "未注明",
+   "note": "生物/疫苗公司发AI视频岗，需精通即梦/可灵等工具，投递前核实公司业务 ｜ 高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "warn",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AI视频训练师（早十晚七双休）",
+   "company": "欢创信息咨询有限公司",
+   "salary": "5-8K",
+   "worktime": "双休",
+   "note": "边缘通勤；早十晚七双休节假日全休；客户公司某大型公司疑代发，投递前核实 ｜ 高德实测❌超圈：骑行53分钟",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "ai人工智能训练师数据标注员",
+   "company": "四川科达锐信息技术有限公司",
+   "salary": "4-7K",
+   "worktime": "未注明",
+   "note": "边缘通勤；大专即可可培训；招1人 ｜ 高德实测❌超圈：骑行54分钟",
+   "golden": {
+    "pushable": "no",
+    "match": "high",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "ai数据标注",
+   "company": "江西浅拾科技有限公司",
+   "salary": "5-8K",
+   "worktime": "未注明",
+   "note": "边缘通勤；本科；纯基础标注可培训 ｜ 高德实测❌超圈：骑行62分钟（万年场代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "high",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AIGC动画师/仿真人漫剧制作员",
+   "company": "成都鲸海互娱影视文化传媒有限公司",
+   "salary": "5-8K",
+   "worktime": "未注明",
+   "note": "边缘通勤；1-3年经验；AI漫剧方向匹配 ｜ 高德实测❌超圈：骑行46分钟",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AI视频剪辑师（会即梦）",
+   "company": "河南狂人电子商务有限公司",
+   "salary": "6-10K",
+   "worktime": "未注明",
+   "note": "边缘通勤；学历不限经验不限；电商短视频剪辑 ｜ 高德实测❌超圈：骑行52分钟",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AI数据标注/无责5K+双休(接受小白)",
+   "company": "成都谷扬蜀西科技",
+   "salary": "7-10K",
+   "worktime": "双休",
+   "note": "纯文职视频内容数据标注，无责5K+绩效，双休，接受小白，通勤近 ｜ 高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AI视频描述",
+   "company": "景烁科技",
+   "salary": "8-9K",
+   "worktime": "未注明",
+   "note": "AI大模型视频项目·影视Caption高阶标注+质量抽检，影视编导方向，可接受有经验新人 ｜ 高德实测✅骑行17分钟（高新区代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "视频标注专员",
+   "company": "成都凌宙云科技",
+   "salary": "5-10K",
+   "worktime": "双休",
+   "note": "AI影视生成前沿项目·早10晚7·周末双休法定全休·大厂项目履历·影视专业对口 ｜ 高德实测❌超圈：地铁55分钟（石羊场代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AI数据标注师",
+   "company": "大连创弘科技",
+   "salary": "6-7K",
+   "worktime": "未注明",
+   "note": "图文数据标注+质量筛选，经验不限本科，通勤近 ｜ 高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AI数据标注",
+   "company": "芜湖乾通互连企业管理",
+   "salary": "6-7K",
+   "worktime": "未注明",
+   "note": "视频/文本/图片多模态标注，1-3年，通勤近 ｜ 高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AI视频训练师",
+   "company": "乐度软件",
+   "salary": "4-6K",
+   "worktime": "未注明",
+   "note": "AI视频模型训练+数据标注，对照生成视频与原始视频差异改写脚本，1-3年 ｜ 高德实测❌超圈：骑行69分钟（双楠代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "内容质量评估",
+   "company": "上海微创软件股份有限公司",
+   "salary": "6-7K",
+   "worktime": "未注明",
+   "note": "自查·播客剧本质量审核+大模型生成视频音画质量评估，对口逻辑与文字优势 ｜ 高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "warn",
+    "blocks": []
+   }
+  },
+  {
+   "title": "ai数据标注师",
+   "company": "上海汝聘信息科技有限公司",
+   "salary": "6-7K",
+   "worktime": "未注明",
+   "note": "自查·视频内容数据标注，1-3年，视觉审美/镜头语言/阅片量要求 ｜ 高德实测⚠️桂溪片区存疑：北端桂溪立交实测地铁54分钟超圈，金融城一带约49分钟边缘；投递",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "warn",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AI图片生成师和视频生成师",
+   "company": "成都隐鹿",
+   "salary": "3-6K",
+   "worktime": "未注明",
+   "note": "AI生成师方向，薪资偏低到手可能不足5K，投递前确认绩效与作息 ｜ 高德实测✅骑行20分钟（新会展中心代表点）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "音频评测标注岗",
+   "company": "成都西蜀云创科技",
+   "salary": "5-8K",
+   "worktime": "未注明",
+   "note": "边缘通勤；听感测评+音乐性缺陷反馈，需一定音乐基础 ｜ 高德实测❌超圈：地铁66分钟",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "游戏视频设计【AI】",
+   "company": "tap4fun（成都尼毕鲁）",
+   "salary": "4-8K",
+   "worktime": "双休",
+   "note": "游戏买量广告视频·AI工具制作·接受无相关经验·甲方公司·周末双休五险一金 ｜ 高德实测✅骑行20分钟（新会展中心代表点）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "pass",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "AI视频制作【双休】",
+   "company": "成都唯快不破网络科技",
+   "salary": "5-8K",
+   "worktime": "双休",
+   "note": "分镜脚本+AIGC视频生成（人物形象图/场景图）·1年以内·双休 ｜ 高德实测❌超圈：骑行83分钟",
+   "golden": {
+    "pushable": "no",
+    "match": "high",
+    "salary": "suspect",
+    "schedule": "pass",
+    "commute": "fail",
+    "blocks": [
+     "薪资存疑(降级)",
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "6500+AI视频标注岗",
+   "company": "成都瀚宇星海",
+   "salary": "6-7K",
+   "worktime": "双休",
+   "note": "视频内容数据标注·月休8天·入职五险一金·通勤近 ｜ 高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "视频标注/周末双休",
+   "company": "成都德雅教育科技",
+   "salary": "6-7K",
+   "worktime": "双休",
+   "note": "自查·语音/视频数据标注·周末双休·入职五险一金（教育公司承接AI标注业务） ｜ 高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "pass",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "多媒体内容创作（含视频AI）",
+   "company": "廖记食品（成都）",
+   "salary": "6-8K",
+   "worktime": "未注明",
+   "note": "视频脚本撰写+AI大模型生成优化文案·品牌内容·对口文字优势 ｜ 高德实测✅地铁46分钟（边缘达标，含步行）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AI视频剪辑师-游戏方向",
+   "company": "瑞博恩互娱",
+   "salary": "5-6K",
+   "worktime": "未注明",
+   "note": "AI模型训练+AI生成分镜预览/视频+剪辑合成·经验不限（需会用剪辑软件） ｜ 高德实测✅骑行13分钟（新川时代中心实测）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "视频制作（AI方向）",
+   "company": "珠海猎豹",
+   "salary": "7-12K",
+   "worktime": "未注明",
+   "note": "官号内容制作剪辑+社媒运营·1-3年·薪资偏高可谈 ｜ 高德实测✅骑行14分钟（中和片区代表点）",
+   "golden": {
+    "pushable": "downgrade",
+    "match": "other",
+    "salary": "suspect",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": [
+     "薪资存疑(降级)"
+    ]
+   }
+  },
+  {
+   "title": "AI视频生成/多模态视频标注",
+   "company": "武汉极境智联",
+   "salary": "9-12K",
+   "worktime": "未注明",
+   "note": "AIGC生成图像视频高阶质量评测+Prompt指令拆解·1-3年·薪资偏高 ｜ 高德实测❌超圈：骑行69分钟（双楠代表点）",
+   "golden": {
+    "pushable": "no",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "fail",
+    "blocks": [
+     "通勤超圈"
+    ]
+   }
+  },
+  {
+   "title": "AI训练师",
+   "company": "四川数聚智造科技",
+   "salary": "5-7K",
+   "worktime": "未注明",
+   "note": "算法模型基础训练及优化支持·数据工作安排协调·1-3年 ｜ 高德实测⏳地址未注明，通勤待确认（投递前问清办公地址）",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "unknown",
+    "blocks": []
+   }
+  },
+  {
+   "title": "大厂内容审核",
+   "company": "武汉赛福科技",
+   "salary": "4-5K",
+   "worktime": "未注明",
+   "note": "图文/直播内容风险识别·过渡性质·薪资偏低确认到手 ｜ 高德实测✅骑行22分钟（华阳代表点）",
+   "golden": {
+    "pushable": "yes",
+    "match": "other",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  },
+  {
+   "title": "AI视频制作",
+   "company": "成都伶可文化传播有限公司",
+   "salary": "6-8K",
+   "worktime": "未注明",
+   "note": "高德实测骑行19分钟达标·剪映/LibTV/Seedance等AI工具+剪辑·配合编导策划·测试轮新增 ｜ 高德实测✅骑行19分钟（东方希望天祥广场）",
+   "golden": {
+    "pushable": "yes",
+    "match": "high",
+    "salary": "pass",
+    "schedule": "unknown",
+    "commute": "pass",
+    "blocks": []
+   }
+  }
+ ]
+}
