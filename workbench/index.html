@@ -1,0 +1,1466 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上岸计划 · 求职者</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#F4F6FA; --card:#FFFFFF; --ink:#101828; --muted:#667085; --line:#E4E7EC;
+  --blue:#2563EB; --blue-50:#EFF4FF; --blue-700:#1D4ED8;
+  --green:#059669; --green-50:#ECFDF5; --amber:#D97706; --amber-50:#FFFAEB;
+  --red:#DC2626; --red-50:#FEF2F2; --radius:14px; --shadow:0 1px 2px rgba(16,24,40,.05);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.layout{display:flex;min-height:100vh}
+/* ===== 左侧栏 ===== */
+.side{width:264px;flex-shrink:0;background:#fff;border-right:1px solid var(--line);padding:24px 20px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.brand-mark{width:34px;height:34px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand-name{font-size:17px;font-weight:700;letter-spacing:.2px}
+.brand-sub{font-size:12px;color:var(--muted);margin-bottom:20px}
+.stat-card{background:var(--blue-50);border-radius:12px;padding:14px 16px;margin-bottom:16px}
+.stat-num{font-size:26px;font-weight:800;color:var(--blue);line-height:1.1}
+.stat-label{font-size:12px;color:var(--blue-700);opacity:.75;margin-top:2px}
+.f-head{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.4px;margin:18px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font-size:12.5px;cursor:pointer;color:var(--ink);transition:all .15s;user-select:none}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600}
+.search-box{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-bottom:16px}
+.search-box svg{flex-shrink:0}
+.search-box input{border:none;outline:none;font-size:13.5px;width:100%;background:transparent;color:var(--ink)}
+.side-note{font-size:11.5px;color:var(--muted);margin-top:20px;padding-top:14px;border-top:1px solid var(--line);line-height:1.7}
+/* ===== 左侧常驻工作台看板（参考豆包工作台形式，桌面端常驻左侧） ===== */
+.sidepanel{width:320px;flex-shrink:0;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.sp-head{padding:18px 18px 14px;border-bottom:1px solid var(--line)}
+.sp-brand{display:flex;align-items:center;gap:10px}
+.sp-brand .brand-mark{width:32px;height:32px;border-radius:9px}
+.sp-title{font-size:15px;font-weight:800;letter-spacing:.2px}
+.sp-sub{font-size:11px;color:var(--muted);margin-top:1px}
+.sp-search{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:12px;background:#F8FAFC}
+.sp-search svg{flex-shrink:0}
+.sp-search input{border:none;outline:none;font-size:13px;width:100%;background:transparent;color:var(--ink)}
+.sp-search input:focus{color:var(--ink)}
+.sp-search .kbd{margin-left:auto;font-size:10px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px;flex-shrink:0}
+.sp-nav{padding:10px 12px;border-bottom:1px solid var(--line)}
+.sp-nav .sp-nav-t{font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:.6px;padding:4px 8px 8px}
+.sp-nav .entries{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.sp-entry{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:10px;border:1px solid transparent;cursor:pointer;background:transparent;color:var(--ink);font-size:12.5px;font-weight:600;transition:all .15s;text-align:left}
+.sp-entry:hover{background:var(--blue-50)}
+.sp-entry.on{background:var(--blue-50);border-color:#BFDBFE;color:var(--blue-700)}
+.sp-entry .eico{width:26px;height:26px;border-radius:8px;background:#EFF4FF;color:var(--blue-700);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sp-entry .eico svg{width:15px;height:15px}
+.sp-view{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.sp-view .sp-v-title{font-size:14px;font-weight:800}
+.sp-view .sp-v-sub{font-size:11.5px;color:var(--muted);margin-top:2px}
+.sp-section{background:#F8FAFC;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.sp-sec-h{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:#fff;font-size:12px;font-weight:700;border-bottom:1px solid var(--line)}
+.sp-sec-h .cnt{font-size:11px;color:var(--muted);font-weight:600}
+.sp-item{display:flex;align-items:center;gap:9px;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s;min-width:0}
+.sp-item:last-child{border-bottom:none}
+.sp-item:hover{background:#fff}
+.sp-item .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sp-item .it-t{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.sp-item .it-m{font-size:10.5px;color:var(--muted);flex-shrink:0;margin-left:6px}
+.sp-item.open{opacity:.55}
+.sp-item .badge{font-size:10px;font-weight:700;padding:1.5px 6px;border-radius:5px;flex-shrink:0}
+.badge.un{background:var(--blue-50);color:var(--blue-700)}
+.badge.ap{background:var(--green-50);color:var(--green)}
+.badge.closed{background:#F2F4F7;color:var(--muted)}
+.sp-kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sp-kpi{background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 12px}
+.sp-kpi .k-num{font-size:21px;font-weight:800;line-height:1.1}
+.sp-kpi .k-num.blue{color:var(--blue)}.sp-kpi .k-num.green{color:var(--green)}.sp-kpi .k-num.amber{color:var(--amber)}.sp-kpi .k-num.red{color:var(--red)}
+.sp-kpi .k-lab{font-size:11px;color:var(--muted);margin-top:3px}
+.sp-srcbar{display:flex;flex-direction:column;gap:7px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px}
+.sp-srcbar .row{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--muted)}
+.sp-srcbar .row b{color:var(--ink);font-weight:700}
+.sp-srcbar .bar{flex:1;height:6px;background:#F2F4F7;border-radius:3px;overflow:hidden}
+.sp-srcbar .bar i{display:block;height:100%;background:var(--blue);border-radius:3px}
+.sp-resume{font-size:12px;color:var(--ink);line-height:1.8}
+.sp-resume .rv-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:8px}
+.sp-resume .rv-card .rv-t{font-size:12px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.sp-resume .rv-line{font-size:11.5px;color:var(--muted)}
+.sp-resume .rv-tag{display:inline-block;font-size:10.5px;background:var(--blue-50);color:var(--blue-700);border-radius:6px;padding:2px 7px;margin:3px 4px 0 0}
+.sp-resume .rv-btn{display:block;text-align:center;padding:10px;border-radius:9px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:700;margin-top:10px}
+.sp-resume .rv-btn:hover{background:var(--blue-700)}
+.sp-foot{padding:12px 16px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted)}
+.sp-foot .who{display:flex;align-items:center;gap:8px}
+.sp-foot .who .avatar{width:26px;height:26px;font-size:12px;border-radius:8px}
+.sp-foot a{color:var(--blue-700);font-weight:600}
+.sp-foot a:hover{text-decoration:underline}
+/* ===== 主区筛选折叠条 ===== */
+.filterbar{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.filterbar .f-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.filterbar .f-label{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.4px;margin-right:2px}
+.filterbar .chip{padding:4px 10px;font-size:12px}
+.filterbar .chip.on{padding:4px 10px}
+/* ===== 规则中心 ===== */
+.rules-btn{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink);margin-top:16px;transition:all .15s}
+.rules-btn:hover{border-color:var(--blue);color:var(--blue)}
+.rules-btn .ico{width:20px;height:20px;border-radius:6px;background:var(--blue-50);color:var(--blue-700);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.rules-mask{position:fixed;inset:0;background:rgba(16,24,40,.45);z-index:65;opacity:0;pointer-events:none;transition:opacity .2s}
+.rules-mask.show{opacity:1;pointer-events:auto}
+.rules-drawer{position:fixed;top:0;right:0;bottom:0;width:430px;max-width:92vw;background:#fff;z-index:70;box-shadow:-12px 0 32px rgba(16,24,40,.16);transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column}
+.rules-drawer.show{transform:translateX(0)}
+.rd-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+.rd-head h2{font-size:16px;font-weight:800}
+.rd-close{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:15px;color:var(--muted);display:flex;align-items:center;justify-content:center}
+.rd-close:hover{color:var(--ink);border-color:#C7D7FE}
+.rd-body{flex:1;overflow-y:auto;padding:16px 20px 20px}
+.rd-sec{margin-bottom:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.rd-sec-h{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:#F8FAFC;font-size:13px;font-weight:700;border-bottom:1px solid var(--line)}
+.rd-sec-h .ver{font-size:11px;color:var(--muted);font-weight:500}
+.rd-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;font-size:13px;border-bottom:1px solid #F2F4F7}
+.rd-row:last-child{border-bottom:none}
+.rd-row .k{color:var(--ink);font-weight:600}
+.rd-row .v{color:var(--muted);text-align:right;font-size:12.5px}
+.rd-row .v.good{color:var(--green);font-weight:700}
+.rd-row .v.warn{color:var(--amber);font-weight:700}
+.rd-row .v.bad{color:var(--red);font-weight:700}
+.rd-toggle{position:relative;width:40px;height:22px;border-radius:999px;background:#E4E7EC;cursor:pointer;transition:background .15s;flex-shrink:0}
+.rd-toggle::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(16,24,40,.2);transition:transform .15s}
+.rd-toggle.on{background:var(--green)}
+.rd-toggle.on::after{transform:translateX(18px)}
+.rd-num{width:64px;border:1px solid var(--line);border-radius:8px;padding:5px 8px;font-size:13px;text-align:center;outline:none;background:#fff;color:var(--ink)}
+.rd-num:focus{border-color:var(--blue)}
+.rd-txt{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px;outline:none;background:#fff;color:var(--ink);max-width:70%}
+.rd-txt:focus{border-color:var(--blue)}
+.rd-sel{border:1px solid var(--line);border-radius:8px;padding:5px 6px;font-size:12px;background:#fff;color:var(--ink);outline:none}
+.rd-del{width:26px;height:26px;border:none;border-radius:8px;background:#FEF2F2;color:#EF4444;font-size:15px;line-height:1;cursor:pointer;flex-shrink:0}
+.rd-del:hover{background:#FEE2E2}
+.rd-dir-edit{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px dashed #F2F4F7}
+.rd-dir-edit:last-child{border-bottom:none}
+.rd-dir-add{display:inline-flex;align-items:center;gap:6px;margin:10px 14px;padding:7px 14px;border:1px dashed var(--line);border-radius:10px;background:#fff;color:var(--blue-700);font-size:12.5px;font-weight:600;cursor:pointer}
+.rd-dir-add:hover{border-color:var(--blue);background:var(--blue-50)}
+.rd-foot{display:flex;gap:10px;padding:14px 20px;border-top:1px solid var(--line);background:#fff}
+.rd-btn{flex:1;padding:11px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.rd-btn.primary{background:var(--blue);color:#fff}
+.rd-btn.primary:hover{background:var(--blue-700)}
+.rd-btn.ghost{background:#fff;color:var(--muted);border:1px solid var(--line)}
+.rd-btn.ghost:hover{color:var(--ink);border-color:#C7D7FE}
+.rd-saved{text-align:center;font-size:12px;color:var(--green);padding:6px 0 0;min-height:20px}
+.rd-preview{margin:10px 14px 0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.rd-preview .pv-head{font-weight:700;font-size:13px;margin-bottom:8px}
+.rd-preview .pv-sec{margin:6px 0;border-top:1px dashed var(--line);padding-top:6px}
+.rd-preview .pv-sec-t{font-size:11px;color:var(--muted);margin-bottom:4px}
+.rd-preview .pv-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:2px 0;color:var(--fg)}
+.rd-preview .pv-row.ok{color:var(--green)}
+.rd-preview .pv-row.bad{color:var(--red)}
+.rd-preview .pv-row.muted{color:var(--muted)}
+.rd-preview .pv-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.rd-preview .pv-actions .rd-btn{width:auto;flex:1}
+.rd-note{font-size:11.5px;color:var(--muted);line-height:1.7;background:var(--blue-50);border-radius:10px;padding:10px 12px;margin-bottom:14px}
+.rd-dir{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:12.5px;border-bottom:1px dashed #F2F4F7}
+.rd-dir:last-child{border-bottom:none}
+.rd-dir .tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px}
+.rd-dir .tag.high{background:var(--green-50);color:var(--green)}
+.rd-dir .tag.medium{background:var(--amber-50);color:var(--amber)}
+.rd-dir .tag.low{background:#F2F4F7;color:var(--muted)}
+.rd-chip{display:inline-block;font-size:11.5px;color:var(--muted);background:#F8FAFC;border:1px solid var(--line);border-radius:999px;padding:3px 9px;margin:3px 4px 0 0}
+.rd-badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin:2px 4px 0 0}
+.rd-badge.learn{background:var(--amber-50);color:var(--amber)}
+.rd-hint{font-size:12px;color:var(--blue-700);background:var(--blue-50);border-radius:8px;padding:8px 10px;margin-bottom:10px;line-height:1.6}
+/* ===== 右侧主区 ===== */
+.main{flex:1;padding:24px 28px 48px;min-width:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.top-title h1{font-size:22px;font-weight:800;letter-spacing:.2px}
+.top-title p{font-size:13px;color:var(--muted);margin-top:2px}
+.tabs{display:flex;gap:4px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:3px}
+.tab{padding:7px 16px;border-radius:8px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--muted);border:none;background:transparent}
+.tab.on{background:var(--blue);color:#fff}
+.tab .cnt{font-weight:700;margin-left:2px;opacity:.85}
+.sort-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.sort-bar select{border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px;background:#fff;color:var(--ink);outline:none}
+.sort-bar .result{margin-left:auto;font-size:12.5px;color:var(--muted)}
+/* ===== 卡片流 ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
+.job{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;transition:box-shadow .15s;position:relative}
+.job:hover{box-shadow:0 6px 18px rgba(16,24,40,.08);border-color:#C7D7FE}
+.job.applied{background:#FCFCFD;border-color:var(--line);opacity:.82}
+.job-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.job-corp{display:flex;align-items:center;gap:10px;min-width:0}
+.avatar{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;flex-shrink:0}
+.job-title{font-size:15.5px;font-weight:700;line-height:1.35;word-break:break-all}
+.job-company{font-size:12.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.score{flex-shrink:0;text-align:right}
+.score-num{font-size:24px;font-weight:800;line-height:1;color:var(--blue)}
+.score-label{font-size:10.5px;color:var(--muted);margin-top:2px}
+.score-bar{width:52px;height:4px;background:var(--line);border-radius:2px;margin-top:5px;overflow:hidden}
+.score-bar i{display:block;height:100%;background:var(--blue);border-radius:2px}
+.job-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:3.5px 10px;border-radius:999px;font-weight:600}
+.pill.salary{background:var(--ink);color:#fff}
+.pill.worktime{background:var(--green-50);color:var(--green);border:1px solid #A7F3D0}
+.pill.worktime.none{background:#F2F4F7;color:var(--muted);border:1px solid var(--line)}
+.pill.src{background:#fff;border:1px solid var(--line);color:var(--muted);font-weight:500}
+.pill.cm{font-weight:700}
+.pill.cm.good{background:var(--green-50);color:var(--green)}
+.pill.cm.mid{background:var(--amber-50);color:var(--amber)}
+.pill.cm.far{background:var(--red-50);color:var(--red)}
+.pill.cm.online{background:var(--blue-50);color:var(--blue-700)}
+.job-note{font-size:12.5px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--line);padding-top:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.job-foot{display:flex;align-items:center;gap:10px;margin-top:auto}
+.group-h{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:8px 0 2px;font-size:14.5px;font-weight:800;color:var(--ink);padding:8px 12px;background:var(--green-50);border-radius:10px;border:1px solid #A7F3D0}
+.group-h .cnt{font-size:12px;color:var(--green);font-weight:700}
+.apply-btn{flex:1;text-align:center;padding:9px 12px;border-radius:9px;font-size:13.5px;font-weight:700;background:var(--blue);color:#fff;border:none;cursor:pointer;transition:background .15s}
+.apply-btn:hover{background:var(--blue-700)}
+.apply-btn.done{background:#F2F4F7;color:var(--muted);cursor:default;font-weight:600}
+.mark-btn{flex:1;text-align:center;padding:9px 12px;border-radius:9px;font-size:13.5px;font-weight:600;background:#fff;color:var(--green);border:1px solid #A7F3D0;cursor:pointer;transition:background .15s,border-color .15s}
+.mark-btn:hover{background:var(--green-50);border-color:var(--green)}
+.tag-mini{font-size:11px;font-weight:700;padding:2.5px 8px;border-radius:6px}
+.tag-mini.reco{background:var(--blue-50);color:var(--blue-700)}
+.tag-mini.prio{background:var(--amber-50);color:var(--amber)}
+.tag-mini.check{background:#F2F4F7;color:var(--muted)}
+.tag-mini.selfcheck{background:#FEF3C7;color:#92400E;}
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:#101828;color:#fff;padding:12px 18px;border-radius:12px;font-size:13.5px;line-height:1.7;max-width:88vw;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99;box-shadow:0 8px 24px rgba(16,24,40,.18)}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast b{color:#6EE7B7}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
+.empty .big{font-size:40px;font-weight:800;color:#D0D5DD;margin-bottom:8px}
+/* 移动端：面板变滑出抽屉 */
+.sp-toggle{display:none}
+@media (max-width:900px){
+  .layout{flex-direction:column}
+  .sidepanel{position:fixed;top:0;right:0;bottom:0;left:auto;width:min(92vw,360px);z-index:60;height:100vh;transform:translateX(105%);transition:transform .25s ease;box-shadow:-12px 0 32px rgba(16,24,40,.16)}
+  .sidepanel.open{transform:translateX(0)}
+  .sp-toggle{display:flex;position:fixed;right:14px;bottom:20px;z-index:61;align-items:center;gap:7px;background:var(--blue);color:#fff;border:none;border-radius:999px;padding:11px 16px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(37,99,235,.35)}
+  .sp-mask{display:none}
+  .sidepanel.open+.sp-mask{display:block;position:fixed;inset:0;background:rgba(16,24,40,.45);z-index:59}
+  .main{padding:16px 14px 40px}
+  .topbar{flex-direction:column;align-items:stretch}
+  .tabs{width:100%}
+  .tab{flex:1;text-align:center}
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .sort-bar .result{display:none}
+  .job-title{font-size:16.5px}
+  .job-company{font-size:13px}
+  .pill{font-size:12.5px;padding:4px 11px}
+  .job-note{font-size:13px}
+  .apply-btn{font-size:14px}
+  .score-num{font-size:26px}
+  .search-box input{font-size:16px}
+  .sp-search input{font-size:16px}
+  .filterbar{flex-direction:column;gap:10px}
+  .filterbar .f-group{width:100%}
+}
+/* ===== 右侧主区功能视图（入口点击后整区显示） ===== */
+.view-page{display:block}
+.view-title{font-size:18px;font-weight:800;margin-bottom:4px}
+.view-sub{font-size:12.5px;color:var(--muted);margin-bottom:16px;line-height:1.7}
+.v-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.v-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);min-width:0}
+.v-card h3{font-size:13.5px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.v-card h3 .cnt{font-size:11.5px;color:var(--muted);font-weight:600}
+.v-line{font-size:12.5px;color:var(--muted);line-height:1.8}
+.v-list{display:flex;flex-direction:column}
+.v-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:#fff;cursor:pointer;transition:border-color .12s;min-width:0}
+.v-item:hover{border-color:#C7D7FE}
+.v-item .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.v-item .vt-t{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.v-item .vt-c{font-size:11.5px;color:var(--muted);flex-shrink:0}
+.v-item .vt-s{font-size:11.5px;color:var(--muted);flex-shrink:0;margin-left:4px}
+.st-sel{font-size:11.5px;font-weight:600;color:var(--green);background:#fff;border:1px solid #A7F3D0;border-radius:6px;padding:2px 4px;flex-shrink:0;cursor:pointer}
+.st-sel:disabled{opacity:.6;cursor:default}
+.st-sel.card{font-size:12.5px;font-weight:700;color:var(--green);border:1px solid #A7F3D0;background:#fff;border-radius:9px;padding:8px 8px;flex:0 0 auto;min-width:84px;text-align:center;cursor:pointer}
+.st-sel.card:hover{border-color:var(--green);background:var(--green-50)}
+.st-sel.card:disabled{opacity:.6;cursor:default}
+.fb-sel{font-size:11.5px;font-weight:600;color:var(--blue);background:#fff;border:1px solid #BFDBFE;border-radius:6px;padding:2px 4px;flex-shrink:0;cursor:pointer;margin-left:4px}
+.fb-sel:disabled{opacity:.6;cursor:default}
+.v-badge{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px;flex-shrink:0}
+.v-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px}
+.v-kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.v-kpi .k-num{font-size:26px;font-weight:800;line-height:1.1}
+.v-kpi .k-lab{font-size:12px;color:var(--muted);margin-top:4px}
+.v-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:6px 0}
+.v-row b{color:var(--ink);font-weight:700;min-width:52px}
+.v-row .v-bar{flex:1}
+.v-bar{height:8px;background:#F2F4F7;border-radius:4px;overflow:hidden;flex:1}
+.v-bar i{display:block;height:100%;background:var(--blue);border-radius:4px}
+.v-btn{display:inline-block;padding:10px 18px;border-radius:9px;background:var(--blue);color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;text-align:center;transition:background .15s}
+.v-btn:hover{background:var(--blue-700)}
+.v-btn.ghost{background:#fff;color:var(--muted);border:1px solid var(--line)}
+.v-btn.ghost:hover{color:var(--ink);border-color:#C7D7FE}
+.v-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.v-sec{border-top:1px dashed var(--line);padding:12px 0 4px;margin-top:10px}
+.v-sec-t{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.v-tag{font-size:11.5px;background:var(--blue-50);color:var(--blue-700);border-radius:7px;padding:3px 9px}
+.v-tag.amber{background:var(--amber-50);color:var(--amber)}
+.v-tag.gray{background:#F2F4F7;color:var(--muted)}
+.v-tag.green{background:var(--green-50);color:var(--green)}
+.v-pri{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px}
+.v-pri.high{background:var(--green-50);color:var(--green)}
+.v-pri.medium{background:var(--amber-50);color:var(--amber)}
+.v-pri.low{background:#F2F4F7;color:var(--muted)}
+.v-note{font-size:11.5px;color:var(--muted);line-height:1.7;background:var(--blue-50);border-radius:10px;padding:10px 12px;margin-bottom:14px}
+.rd-foot{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+.rd-foot .rd-btn{flex:1;min-width:120px}
+@media (max-width:900px){
+  .v-grid{grid-template-columns:minmax(0,1fr)}
+  .v-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .v-item .vt-c{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- ===== 左侧常驻工作台看板（豆包工作台式侧边面板） ===== -->
+  <aside class="sidepanel" id="sidepanel">
+    <div class="sp-head">
+      <div class="sp-brand">
+        <div class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#fff" stroke-width="2.5"/><circle cx="12" cy="12" r="2.5" fill="#fff"/><path d="M12 4V2M12 22v-2M4 12H2M22 12h-2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div>
+          <div class="sp-title">上岸计划 · 工作台</div>
+          <div class="sp-sub" id="spSub">规则 v5.2 ｜ 更新于 2026-09-23</div>
+        </div>
+      </div>
+      <div class="sp-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#98A2B3" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#98A2B3" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="spKw" type="text" placeholder="搜索岗位 / 公司…">
+        <span class="kbd">Ctrl K</span>
+      </div>
+    </div>
+    <div class="sp-nav">
+      <div class="sp-nav-t">功能入口</div>
+      <div class="entries" id="spEntries">
+        <button class="sp-entry on" data-v="jobs"><span class="eico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg></span>岗位雷达</button>
+        <button class="sp-entry" data-v="rules"><span class="eico"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" stroke="currentColor" stroke-width="2"/><rect x="9" y="3" width="6" height="4" rx="1" stroke="currentColor" stroke-width="2"/><path d="M9 12h6M9 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>规则中心</button>
+        <button class="sp-entry" data-v="track"><span class="eico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 1 0 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>投递追踪</button>
+        <button class="sp-entry" data-v="stats"><span class="eico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>数据看板</button>
+        <button class="sp-entry" data-v="resume"><span class="eico"><svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="2"/><path d="M8 13h8M8 17h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>简历中心</button>
+        <button class="sp-entry" data-v="road"><span class="eico"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="2.5" stroke="currentColor" stroke-width="2"/><path d="M8.5 6H18l-6 12H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>求职路线</button>
+      </div>
+    </div>
+    <div class="sp-foot">
+      <span class="who"><span class="avatar" style="background:#2563EB">韦</span>求职者 · 求职者</span>
+      <a href="https://my.feishu.cn/base/YOUR_BASE_TOKEN" target="_blank" rel="noopener">完整岗位库 ↗</a>
+    </div>
+  </aside>
+  <div class="sp-mask" id="spMask"></div>
+  <button class="sp-toggle" id="spToggle">工作台</button>
+
+  <!-- ===== 右侧主区 ===== -->
+  <main class="main">
+    <div class="topbar">
+      <div class="top-title">
+        <h1 id="mainTitle">上岸计划 · 岗位雷达</h1>
+        <p id="mainSub">成都 · 双流YOUR_HOME_PLACE 3 栋出发 ｜ 按你的规则筛选后的岗位</p>
+      </div>
+      <div class="tabs" id="tabsWrap">
+        <button class="tab on" data-t="un">推荐投<span class="cnt" id="cntUn">0</span></button>
+        <button class="tab" data-t="applied">已投<span class="cnt" id="cntAp">0</span></button>
+        <button class="tab" data-t="all">全部<span class="cnt" id="cntAll">0</span></button>
+      </div>
+    </div>
+    <!-- 视图：岗位雷达 -->
+    <div class="view-page" id="viewJobs">
+      <div class="search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#98A2B3" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#98A2B3" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="kw" type="text" placeholder="搜索职位或公司…">
+      </div>
+      <div class="filterbar" id="filterbar">
+        <div class="f-group"><span class="f-label">岗位状态</span><div class="chips" id="chipState">
+          <button class="chip on" data-v="all">全部</button>
+          <button class="chip" data-v="un">未投</button>
+          <button class="chip" data-v="applied">已投</button>
+        </div></div>
+        <div class="f-group"><span class="f-label">来源平台</span><div class="chips" id="chipSrc">
+          <button class="chip on" data-v="all">全部</button>
+          <button class="chip" data-v="BOSS">BOSS</button>
+          <button class="chip" data-v="智联">智联</button>
+          <button class="chip" data-v="51job">51job</button>
+          <button class="chip" data-v="猎聘">猎聘</button>
+          <button class="chip" data-v="高校就业">高校</button>
+          <button class="chip" data-v="政府官网">政企</button>
+        </div></div>
+        <div class="f-group"><span class="f-label">综合分</span><div class="chips" id="chipScore">
+          <button class="chip on" data-v="0">全部</button>
+          <button class="chip" data-v="75">75+</button>
+          <button class="chip" data-v="85">85+</button>
+        </div></div>
+        <div class="f-group"><span class="f-label">通勤（骑行）</span><div class="chips" id="chipCm">
+          <button class="chip on" data-v="99">不限</button>
+          <button class="chip" data-v="15">≤15分</button>
+          <button class="chip" data-v="20">≤20分</button>
+          <button class="chip" data-v="25">≤25分</button>
+        </div></div>
+      </div>
+      <div class="sort-bar">
+        <select id="sortSel">
+          <option value="score">按综合分 ↓</option>
+          <option value="cm">按通勤近 ↓</option>
+          <option value="sal">按薪资高 ↓</option>
+        </select>
+        <span class="result" id="resultText">18 个岗位</span>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+    <!-- 视图：规则中心 -->
+    <div class="view-page" id="viewRules" style="display:none">
+      <div class="rd-hint" id="rulesHint">加载中…</div>
+      <div id="rulesBody"></div>
+      <div class="rd-preview" id="rulesPreview" style="display:none"></div>
+      <div class="rd-foot">
+        <button class="rd-btn ghost" id="rulesExport">导出模板</button>
+        <button class="rd-btn ghost" id="rulesImport">导入模板</button>
+        <button class="rd-btn ghost" id="rulesReset">恢复默认</button>
+        <button class="rd-btn primary" id="rulesSave">保存规则</button>
+        <input type="file" id="rulesFile" accept=".json,application/json" style="display:none">
+      </div>
+      <div class="rd-saved" id="rulesSaved"></div>
+    </div>
+    <!-- 视图：投递追踪 -->
+    <div class="view-page" id="viewTrack" style="display:none"></div>
+    <!-- 视图：数据看板 -->
+    <div class="view-page" id="viewStats" style="display:none"></div>
+    <!-- 视图：简历中心 -->
+    <div class="view-page" id="viewResume" style="display:none"></div>
+    <!-- 视图：多维表格 -->
+    <div class="view-page" id="viewBase" style="display:none"></div>
+    <!-- 视图：求职路线 -->
+    <div class="view-page" id="viewRoad" style="display:none"></div>
+    <!-- 视图：规则模板 -->
+    <div class="view-page" id="viewTpl" style="display:none"></div>
+  </main>
+</div>
+
+<script>
+/* ===== 数据（来源：all_jobs_snapshot.ndjson 2026-09-18，18条） ===== */
+var JOBS=[
+{t:"大模型数据标注-文本/复杂任务(成都)",c:"腾讯智研（重庆）",s:"10-15K",l:"高新区",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:82,cm:19,note:"腾讯直招高薪，文本标注门槛低 ⚠️链接非详情页，请在平台搜公",u:"https://jobs.51job.com/all/coA2IFZlA3BzgEZwJkXTo.html",r:"recvvbp1TjVwXy"},
+{t:"AIGC视频标注与评估研究员",c:"腾讯智研（重庆）",s:"10-15K",l:"武侯区",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"",sc:86,cm:19,note:"视频标注+评估偏创作，匹配高 ⚠️链接非详情页，请在平台搜公",u:"https://jobs.51job.com/all/coA2IFZlA3BzgEZwJkXTo.html",r:"recvvbp1TjnaOG"},
+{t:"快手大模型标注运营",c:"快手",s:"8-14K",l:"成都·高新区",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"",sc:84,cm:17,note:"大厂直招，运营向有成长",u:"https://www.liepin.com/job/1978589619.shtml",r:"recvvbp1TjNZ14"},
+{t:"AI视频Caption标注质检",c:"景烁科技",s:"5-7K",l:"武侯区紫光芯云中心B幢5F",src:"",wt:"未注明",st:"待核",ap:1,ps:"婉拒",fb:"不合适",sc:65,cm:21,note:"质检为过渡岗，薪资一般",u:"https://www.zhipin.com/job_detail/0c996f5147ecad370nN429W7FldX.html",r:"recvvbp1TjP7xv"},
+{t:"高级AIGC制作师(周末双休)",c:"成都银河纪元科技",s:"8-10K",l:"武侯区花样年美年广场A座9楼",src:"",wt:"双休",st:"待核",ap:1,ps:"婉拒",fb:"不合适",sc:92,cm:14,note:"AIGC制作最高匹配+双休+薪资好",u:"https://www.zhipin.com/job_detail/181aa16484b6df570nBy0t24FFFU.html",r:"recvvbp1Tj23Of"},
+{t:"AIGC图像标注与评估研究员",c:"腾讯智研（重庆）",s:"10-15K",l:"武侯·腾讯成都大厦A座",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"",sc:86,cm:19,note:"图像美学评估，无需经验",u:"https://jobs.51job.com/chengdu-whq/170450050.html",r:"recvvbvbLdR8VM"},
+{t:"AIGC世界模型标注与评估研究员",c:"腾讯智研（重庆）",s:"10-15K",l:"武侯·腾讯成都大厦A座",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"",sc:86,cm:19,note:"世界模型标注，需英语读写",u:"https://jobs.51job.com/chengdu-whq/170458524.html",r:"recvvbvbLdLFgZ"},
+{t:"大模型精标-图像",c:"腾讯智研（重庆）",s:"10-15K",l:"武侯·腾讯成都大厦A座",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"",sc:82,cm:19,note:"图像精标，美术优先",u:"https://jobs.51job.com/chengdu-whq/170460692.html",r:"recvvbvbLdQSKE"},
+{t:"AI视频描述",c:"景烁科技",s:"8-9K",l:"武侯区紫光芯云中心B栋5F",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"",sc:78,cm:21,note:"影视描述偏创作，薪资中上",u:"https://www.zhipin.com/job_detail/22e1c427d1710ce30nF929i_F1RW.html",r:"recvvh49C7Tx9z"},
+{t:"游戏视频设计【AI】",c:"tap4fun（成都尼毕鲁）",s:"4-8K",l:"武侯区天府软件园A区A3",src:"",wt:"双休",st:"推荐",ap:1,ps:"婉拒",fb:"",sc:84,cm:18,note:"AIGC创作+双休+上市公司，下限需确认",u:"https://www.zhipin.com/job_detail/7ef449917023415e03B709y-GVdU.html",r:"recvvtpA7tIA7H"},
+{t:"AI视频剪辑师-游戏方向",c:"瑞博恩互娱",s:"5-6K",l:"双流区新川时代中心6楼633",src:"",wt:"未注明",st:"优先",ap:1,ps:"已投",fb:"待定",sc:81,cm:13,note:"AI视频剪辑匹配高，通勤13分",u:"https://www.zhipin.com/job_detail/727ed75f23bc4c780nV72NS0E1RV.html",r:"recvvtpA7tb0B7"},
+{t:"视频制作(AI方向)",c:"珠海猎豹",s:"7-12K",l:"武侯区天府软件园C区6栋",src:"",wt:"未注明",st:"优先",ap:1,ps:"已投",fb:"待定",sc:85,cm:18,note:"视频制作AI，薪资高",u:"https://www.zhipin.com/job_detail/5f18f1664ca7cedc0nV82Nq8GVFW.html",r:"recvvtpA7tE1yZ"},
+{t:"AI视频制作",c:"成都伶可文化传播有限公司",s:"6-8K",l:"武侯区东方希望天祥广场3楼F304",src:"",wt:"未注明",st:"优先",ap:1,ps:"婉拒",fb:"不合适",sc:81,cm:19,note:"AI视频制作，薪资中上",u:"https://www.zhipin.com/job_detail/e269a136c43cc0cd0nN-29u9FVJY.html",r:"recvvubWsCJzQB"},
+{t:"AI大模型标注/固定朝九晚六",c:"及梦",s:"5-6K",l:"双流区AI创新中心B6一层",src:"",wt:"未注明",st:"推荐",ap:1,ps:"婉拒",fb:"不合适",sc:76,cm:11,note:"通勤11分+朝九晚六，保底",u:"https://www.zhipin.com/job_detail/1ef0d393dd5ab5450nN52926EFJS.html",r:"recvvx0EMOFoEs"},
+{t:"AI影视视频评测专家(线上+双休)",c:"汉唐数标",s:"5-6K",l:"成都武侯·中和",src:"",wt:"双休",st:"推荐",ap:1,ps:"婉拒",fb:"待定",sc:82,cm:14,note:"线上+双休+评测，灵活",u:"https://www.zhipin.com/job_detail/bdc87cb73be065e40nN_39-7FVRQ.html",r:"recvvx0EMOb30c"},
+{t:"AI训练师(Caption视频)+朝九晚六",c:"景烁科技",s:"7.3-8.8K",l:"武侯区紫光芯云中心B栋5F",src:"",wt:"未注明",st:"优先",ap:1,ps:"婉拒",fb:"不合适",sc:87,cm:21,note:"AI训练师最高匹配+朝九晚六",u:"https://www.zhipin.com/job_detail/2c6b53d9166e3cbc0nF929q_E1ZX.html",r:"recvvx0EMOPr2X"},
+{t:"AI内容评测标注员",c:"青蓝致远",s:"4-7K",l:"武侯区天府软件园B区4栋",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:74,cm:18,note:"评测匹配高，下限需确认",u:"https://www.zhipin.com/job_detail/ea3f62d41a397f950nN53ti-EVVR.html",r:"recvvx0EMOGqtr"},
+{t:"AI短视频全能创作专员",c:"千城数智（北京）",s:"7-9K",l:"高新区天府软件园B区B7栋8楼",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:84,cm:18,note:"推荐投递",u:"https://www.zhipin.com/job_detail/dd30e05d99f8d7c90nBy2d6-FFRR.html",r:"recvvyJOs9EJ0b"},
+{t:"AI漫剧内容创作专员(接受无经验)",c:"河南道尔科技",s:"4-6K",l:"双流区成德中心11楼",src:"",wt:"未注明",st:"待核",ap:1,ps:"婉拒",fb:"待定",sc:76,cm:0,note:"保底可考虑",u:"https://www.zhipin.com/job_detail/cca6d05b08b901660nN829i5EFdR.html",r:"recvvyJOs9FAZl"},
+{t:"短视频剪辑专员",c:"成都趣搭光谱科技",s:"8-13K",l:"双流区明日巴适TOMORROW BASE-5楼506",src:"",wt:"双休",st:"待核",ap:1,ps:"已投",fb:"待定",sc:77,cm:0,note:"医美医生IP内容运营公司，双休五险一金，1-3年经验/本科，",u:"https://m.zhipin.com/job_detail/de1bb5f0f311486003N80tu7EFBU.html",r:"recvvyOrfZVb0Q"},
+{t:"短视频编导(AI方向｜山海经上古文化项目)",c:"四川弈南钦文化产业发展",s:"7-9K",l:"武侯区美年广场D座1205(天府大道中段1388号)",src:"",wt:"未注明",st:"待核",ap:1,ps:"已投",fb:"待定",sc:78,cm:0,note:"AI内容创作国风方向，学历不限，要求1-3年经验 ⚠️链接非",u:"https://sou.zhaopin.com/?jl=801&kw=%E5%BC%88%E5%8D%97%E9%92%A6",r:"recvvyOrfZMkq8"},
+{t:"AI剪辑专员",c:"四川弈南钦文化产业发展",s:"6-8K",l:"武侯区美年广场D座1205(天府大道中段1388号)",src:"",wt:"未注明",st:"待核",ap:1,ps:"已投",fb:"待定",sc:75,cm:0,note:"同公司AI内容制作岗，要求1-3年经验 ⚠️链接非详情页，请",u:"https://sou.zhaopin.com/?jl=801&kw=%E5%BC%88%E5%8D%97%E9%92%A6",r:"recvvyOrfZ4cDy"},
+{t:"短视频电商操盘专员",c:"四川弈南钦文化产业发展",s:"6-9K",l:"武侯区美年广场D座1205(天府大道中段1388号)",src:"",wt:"未注明",st:"待核",ap:1,ps:"已投",fb:"待定",sc:73,cm:0,note:"抖音电商0-1起号运营方向，本科 ⚠️链接非详情页，请在平台",u:"https://sou.zhaopin.com/?jl=801&kw=%E5%BC%88%E5%8D%97%E9%92%A6",r:"recvvyOrfZb8GO"},
+{t:"AI提示词工程师",c:"成都市星予创想科技",s:"6-9K·13薪",l:"双流区三利广场3号楼1319办公室 · 骑行24.6分✅",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:86,cm:0,note:"旧版记录，与新推重复，合并",u:"https://www.zhipin.com/job_detail/5b3350ffd98ff35d0nN-2N26E1JS.html",r:"recvvE5v5Uc1Op"},
+{t:"AI产品运营(Prompt/知识库方向)",c:"四川火种燃烧科技",s:"8-11K",l:"武侯区东方希望天祥广场A座807",src:"",wt:"未注明",st:"待核",ap:1,ps:"已投",fb:"待定",sc:78,cm:19,note:"英语CET-4/6+1-2年ToB经验硬门槛，用户无证书，勿",u:"https://www.zhipin.com/job_detail/203d100dee4423460nF63dq5E1tW.html",r:"recvvE5v5UstHO"},
+{t:"AI大模型视频标注(Caption)",c:"及梦",s:"8-10K",l:"双流区AI创新中心11 · 骑行11.3分✅",src:"",wt:"未注明",st:"待核",ap:1,ps:"婉拒",fb:"不合适",sc:72,cm:0,note:"视频Caption方向，景烁同方向已2次婉拒，谨慎投递",u:"https://www.zhipin.com/job_detail/edfb23022fd243970nN529u4FFRX.html",r:"recvvE5v5UHMOT"},
+{t:"行政专员(双休9:00-17:30)",c:"帝欧水华集团股份",s:"5-6K",l:"武侯区新希望国际A座15楼 · 骑行18.3分✅",src:"",wt:"双休",st:"优先",ap:1,ps:"已投",fb:"待定",sc:61,cm:0,note:"⚠️薪资5-6K为税前，下限到手约4500，面试确认薪资结构",u:"https://www.zhipin.com/job_detail/68d8ed34c79fef8a0nJ42920FlRS.html",r:"recvvE5v5ULivT"},
+{t:"AI提示词工程师",c:"成都市星予创想科技",s:"6-9K·13薪",l:"双流区三利广场3号楼(骑行24.6分✅)",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:82,cm:0,note:"与本公司另一记录'AI提示词工程师6-9K·13薪(86分)",u:"https://www.zhipin.com/job_detail/5b3350ffd98ff35d0nN-2N26E1JS.html",r:"recvvOJEIXJrZh"},
+{t:"AI训练师",c:"成都灵枫科技有限公司",s:"6-11K",l:"武侯区中和()",src:"",wt:"未注明",st:"自查",ap:1,ps:"已投",fb:"待定",sc:80,cm:21,note:"游戏公司，经验不限本科，中和通勤骑行21分，薪资6-11K区",u:"https://www.zhipin.com/job_detail/15c0f1ac894028a30nJ60t2_FFVW.html",r:"recvvOJEIX8U6o"},
+{t:"AI提示词工程师",c:"北京康利海文电子商务（成都办公）",s:"7-11K",l:"武侯区中和()",src:"",wt:"未注明",st:"优先",ap:1,ps:"已投",fb:"待定",sc:83,cm:21,note:"2000年成立老公司，经验不限本科。电商背景做AI提示词，沟",u:"https://www.zhipin.com/job_detail/1d20ec32c11c9eee0nJ_2tm1GFVT.html",r:"recvvOJEIXL6Hr"},
+{t:"AI产品运营(Prompt/知识库方向)",c:"四川火种燃烧科技",s:"8-11K",l:"武侯区东方希望天祥广场()",src:"",wt:"未注明",st:"待核",ap:1,ps:"已投",fb:"待定",sc:0,cm:19,note:"英语CET-4/6+1-2年ToB经验硬门槛，用户无证书，勿",u:"https://www.zhipin.com/job_detail/203d100dee4423460nF63dq5E1tW.html",r:"recvvOJEIXF7oz"},
+{t:"AI训练师/数据标注(双休朝九晚六)",c:"成都禄景合科技有限公司",s:"4-8K·13薪",l:"成都高新孵化园1205(地铁含步行47.9分钟)",src:"",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:65,cm:0,note:"⚠️2026-09-23用户反馈：链接已过期失效，岗位已关闭",u:"https://msearch.51job.com/jobs/chengdu-jjq/171818452.html",r:"recvvORYucscob"},
+{t:"线上教育班主任/长期班后端(五险一金双休)",c:"西瓜创客",s:"6-11K",l:"成都(线上为主",src:"",wt:"双休",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:78,cm:0,note:"教培主线·HR任女士9/21 18:51已查看附件简历，主动",u:"https://www.zhipin.com/web/geek/chat",r:"recvvQVsx4GyKm"},
+{t:"初高中理科教师(双休+五险一金)",c:"韦德教育",s:"7-10K",l:"成都",src:"",wt:"双休",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:76,cm:0,note:"教培主线·李女士HR沟通中，理科教师与你数学讲师经历对口；通",u:"https://www.zhipin.com/web/geek/chat",r:"recvvQVsx4nUoe"},
+{t:"数学教师(纯教学、双休)",c:"西安学君同行教育科技",s:"8-12K",l:"成都",src:"",wt:"双休",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:77,cm:0,note:"教培主线·陶慧敏沟通中，纯教学不背销售；通勤待高德实测",u:"https://www.zhipin.com/web/geek/chat",r:"recvvQVsx4janq"},
+{t:"初中数学讲师(景中数学实验,天府新区)",c:"天府新区成都片区",s:"7-12K",l:"天府新区",src:"",wt:"未注明",st:"优先",ap:1,ps:"已投",fb:"待定",sc:78,cm:0,note:"教培主线公办校方向·费青梅人事主管沟通中；天府新区距华润时光",u:"https://www.zhipin.com/web/geek/chat",r:"recvvQVsx4VdeI"},
+{t:"专升本数学老师(全职/兼职)",c:"品大教育",s:"7-9K",l:"成都",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:75,cm:0,note:"教培主线·宋鹏(总经理)沟通中；全职/兼职均可，通勤待核",u:"https://www.zhipin.com/web/geek/chat",r:"recvvQVsx4IawI"},
+{t:"兼职·青羊大学兼职家教/数学",c:"成都优师智学教育咨询",s:"100-150元/时",l:"青羊",src:"",wt:"实习",st:"待核",ap:1,ps:"已投",fb:"待定",sc:60,cm:0,note:"兼职外快(C类)·徐永锋沟通中；青羊距家远，仅作外快不进全职",u:"https://www.zhipin.com/web/geek/chat",r:"recvvQVsx4wCLw"},
+{t:"兼职家教(大学生研究生)",c:"成都学君教育科技",s:"60-200元/时",l:"成都",src:"",wt:"实习",st:"待核",ap:1,ps:"已投",fb:"待定",sc:60,cm:0,note:"兼职外快(C类)·邓女士人事经理沟通中",u:"https://www.zhipin.com/web/geek/chat",r:"recvvQVsx4SLpM"},
+{t:"数学老师",c:"史岱文森（成都）教育信息咨询服务有限公司",s:"6-9K",l:"成都·武侯区·成都高新区(地铁含步行约49分钟临界",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:72,cm:0,note:"教培主线·与高中数学讲师经历对口；通勤地铁约49分钟贴线达标",u:"https://www.zhipin.com/job_detail/8914d735cde49a790nN83Nu-EVpV.html",r:"recvvUCePaYDlc"},
+{t:"AI角色人格提示词工程师",c:"零域数衍",s:"9-14K",l:"武侯区哥谭广场1栋 · 骑行27.4分✅",src:"",wt:"未注明",st:"推荐",ap:1,ps:"已投",fb:"待定",sc:85,cm:0,note:"乙女游戏AI虚拟陪伴角色人设/System Prompt调校",u:"https://www.zhipin.com/job_detail/fe051c134951539b0nN739W4ElBS.html",r:"recvvWrs5yDzC6"},
+{t:"AI训练师(文本/图片标注)",c:"成都小咖邦智能科技",s:"4-6K",l:"武侯区双凤软件园",src:"",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:55,cm:0,note:"经验不限本科，带薪培训，9-18/10-19点。本质标注公司",u:"https://www.zhipin.com/job_detail/fc5f4a2cab44586a031809i-E1tR.html",r:"recvw6f8aVHMsB"},
+{t:"数据标注/AI训练师",c:"迈秘聚林",s:"7-8K",l:"武侯区瑞鑫时代大厦-A座101",src:"",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:0,cm:0,note:"接受无经验应届生；早10晚7；公共交通52.6分达标（骑行3",u:"https://www.zhipin.com/job_detail/f46f4a0be09fdb220nN93N2-FVFS.html",r:"recvwuY2PuvruR"},
+{t:"小红书广告文案设计(双休)",c:"四川乐驹教育咨询有限公司（乐驹文化）",s:"6-8K",l:"成都武侯区JRFANTASIA花漾锦江-B幢12栋10楼1003(天府五街地铁站B口步行370米)",src:"",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:0,cm:0,note:"骑行25min/公交49min，早九晚六双休不加班，留学咨询",u:"https://m.zhipin.com/job_detail/e9783d25636579b20nZz09u6FVtQ.html",r:"recvwvE6SP7XQD"},
+{t:"大模型数据标注-复杂任务",c:"腾讯",s:"11-22K",l:"成都·武侯区·中和",src:"",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:80,cm:0,note:"2026-10-23用户BOSS页面截图确认职位已关闭，勿复",u:"https://www.zhipin.com/job_detail/775e837a2be51eb40nBy39i6ElVZ.html",r:"reczz28MoTNZylBp"},
+{t:"大模型数据标注-成都",c:"华成峰科技",s:"7-10K",l:"成都·武侯区·中和",src:"",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:80,cm:0,note:"骑行约28分钟(腾讯成都大厦)",u:"https://www.zhipin.com/job_detail/42dbbd3009f138a90nB72t-8ElBY.html",r:"reczz28MoTNZzYt7"},
+{t:"AI数据标注-早9晚6-双休",c:"知乎",s:"6-9K",l:"成都·双流区·华阳",src:"",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:80,cm:0,note:"华阳片区,通勤近",u:"https://www.zhipin.com/job_detail/b2edd36783c173770nN90969EFtS.html",r:"reczz28MoTNZxIdn"},
+{t:"大模型标注员",c:"瀚晖科技",s:"6-9K",l:"成都·双流区·华阳",src:"",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:80,cm:0,note:"华阳片区,通勤近",u:"https://www.zhipin.com/job_detail/1a333065fef94e660nF92t28FVtT.html",r:"reczz28MoTNZxLjW"},
+{t:"AI视频数据标注师",c:"亿和众联",s:"6-8K",l:"成都·武侯区·中和",src:"",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"中和片区,通勤近",u:"https://www.zhipin.com/job_detail/e75df551eb43ce2a0nJ92tu_FlNW.html",r:"reczz28MoTNZy8r4"},
+{t:"视频内容AI数据标注师",c:"盛新鑫",s:"6-7K",l:"成都·武侯区·中和",src:"",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"中和片区,通勤近",u:"https://www.zhipin.com/job_detail/a8086c170dd5db030nN909u-FVpZ.html",r:"reczz28MoTNZzUtc"},
+{t:"AI大模型训练师【接受零基础】",c:"山东佳音成都分公司",s:"6-10K",l:"成都·武侯区·中和",src:"",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:80,cm:0,note:"中和片区,通勤近,接受零基础",u:"https://www.zhipin.com/job_detail/b27ab00c6a080a310nN-2t-8EVRR.html",r:"reczz28MoTNZyeO2"},
+{t:"AI风口行业&大模型音频评测",c:"重庆智慧芒果科技",s:"8-9K",l:"成都·双流区·华阳",src:"",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:80,cm:0,note:"骑行约11分钟(双流AI创新中心)",u:"https://www.zhipin.com/job_detail/03af80805f24754c0nx609q1EFRQ.html",r:"reczz28MoTNZyH6j"},
+{t:"模型运营专员 | agent搭建 | 模型训练",c:"快手",s:"10-15K·13薪",l:"成都·双流区·华阳",src:"",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"华阳片区,通勤近",u:"https://www.zhipin.com/job_detail/29276bc0e55fc7a10nN609W7ElRX.html",r:"reczz28MoTNZxiFE"},
+{t:"AI 视频轨迹项目 (数据验收管理)",c:"百川智源",s:"9-11K",l:"成都·双流区·华阳",src:"",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"华阳片区,通勤近",u:"https://www.zhipin.com/job_detail/457b7598ee3c3ad40nN52ty6FVFS.html",r:"reczz28MoTNZx3Yv"},
+{t:"AI模型训练 双休 六险一金",c:"纬致芯创科技",s:"9-14K",l:"成都·武侯区·中和",src:"",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"中和片区,通勤近",u:"https://www.zhipin.com/job_detail/a887fc5ce181b3a41HB92t--EltT.html",r:"reczz28MoTNZzdRI"},
+{t:"AI数据评测-电商业务方向",c:"卓越际联科技有限公司",s:"6-7K",l:"成都·武侯区·中和",src:"",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"携程大楼,中和片区",u:"https://www.zhipin.com/job_detail/18906cb73ab22f0a0nN92dm_FVJV.html",r:"reczz28MoTNZzox9"},
+{t:"AI产品运营(APP产品)",c:"赤金文化",s:"6-7K",l:"成都·武侯区·中和",src:"",wt:"未注明",st:"自查",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"骑行约28分钟(环球中心)",u:"https://www.zhipin.com/job_detail/e2722c9b13d9e3a20nx729u6FldQ.html",r:"reczz28MoTNZx9ey"},
+{t:"四川省2025下半年事业单位公招(编制内)",c:"四川省人社厅",s:"编制内待遇",l:"四川各地含成都",src:"",wt:"双休",st:"推荐",ap:1,ps:"已投",fb:"已投",sc:85,cm:0,note:"来源:政企官网",u:"https://rst.sc.gov.cn/rst/zwyw/2025/9/12/250eb3a6178943a293dd9610dd16cfb7.shtml",r:"reczz28Mocve7DpZ"},
+{t:"成都市事业单位第三批公招1044人(编制内)",c:"成都人事考试网",s:"编制内待遇",l:"成都各区",src:"",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:85,cm:0,note:"来源:政企官网",u:"https://cdpta.cdrsigc.com/netpage/examinfo.do?id=58473308",r:"reczz28Mocve6zqX"},
+{t:"天府新区华阳街道综合管理辅助岗(编外)",c:"天府新区党工委管委会",s:"编外聘用待遇",l:"天府新区华阳街道",src:"",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:85,cm:0,note:"来源:政企官网",u:"https://www.cdtf.gov.cn/cdtfxq/c130530/2026-09/07/dfef1aff82f04e6db12009597278dcc6/files/c3181563bf94455bb32ed9acac6f4f77.pdf",r:"reczz28Mocve6awc"},
+{t:"成都市科技局所属事业单位考核招聘(编制内)",c:"成都市科学技术局",s:"编制内待遇",l:"成都",src:"",wt:"双休",st:"优先",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"来源:政企官网",u:"http://cdst.chengdu.gov.cn/cdskxjsj/c179949/2025-10/31/content_d7584613203549e78f8f2d7860093dfd.shtml",r:"reczz28Mocve83pH"},
+{t:"成都高新区卫健局考核招聘18人",c:"成都高新区卫健局",s:"事业单位待遇",l:"成都高新区",src:"",wt:"双休",st:"优先",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"来源:政企官网",u:"https://www.cdht.gov.cn/cdht/c139667/2025-09/16/content_d8b7c442bff24f879002d60825781496.shtml",r:"reczz28Mocve8m0j"},
+{t:"成都交投集团2025下半年第二批招聘",c:"成都交通投资集团（国企）",s:"国企待遇",l:"成都",src:"",wt:"双休",st:"优先",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"来源:政企官网",u:"https://zhaopin.cdccic.com:6066/announcementDetail/1983049310455197698",r:"reczz28Mocve98Me"},
+{t:"电子科大智能研究院-科研行政助理",c:"电子科技大学",s:"面议",l:"成都高新区",src:"",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:85,cm:0,note:"来源:高校官网",u:"https://www.jobs.uestc.edu.cn/info/1017/3515.htm",r:"reczz28Mocve9nuB"},
+{t:"电子科大医学院-科研行政辅助岗",c:"电子科技大学医学院",s:"面议",l:"成都",src:"",wt:"双休",st:"优先",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"来源:高校官网",u:"https://www.med.uestc.edu.cn/info/1090/3811.htm",r:"reczz28Mocve7yTk"},
+{t:"西南交大计算机学院-科研助理",c:"西南交通大学",s:"专职科研待遇",l:"成都",src:"",wt:"双休",st:"优先",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"来源:高校官网",u:"https://scai.swjtu.edu.cn/web/page-newsDetail.html?nid=a5079a29-5e1d-47d8-be5b-4a1524024dbc",r:"reczz28Mocve8Czb"},
+{t:"四川大学研究生院-助管15名",c:"四川大学",s:"助管津贴",l:"成都武侯区",src:"",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"来源:高校官网",u:"https://gs.scu.edu.cn/info/1051/6135.htm",r:"reczz28Mocve9fSR"},
+{t:"西南交大研究生院-新媒体运营助管",c:"西南交通大学",s:"助管津贴",l:"成都郫都区犀浦",src:"",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"来源:高校官网",u:"https://gsnews.swjtu.edu.cn/?s=",r:"reczz28Mocve98bQ"},
+{t:"AI内容运营(质量评估/润色/标注)",c:"冠腾咨询",s:"面议",l:"成都",src:"",wt:"双休",st:"优先",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"来源:企业官网",u:"https://www.liepin.com/job/1983350119.shtml",r:"reczz28MocveA9Ob"},
+{t:"AI产品运营(经验不限本科)",c:"成都星明未来科技",s:"6-7K",l:"成都高新区",src:"",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:85,cm:0,note:"来源:企业官网",u:"https://www.liepin.com/job/1983775927.shtml",r:"reczz28Mocve88ID"},
+{t:"人工智能助理(早九晚六)",c:"成都某科技公司",s:"面议",l:"成都成华区",src:"",wt:"双休",st:"优先",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"数据清洗/标注/基础训练/知识库维护，早九晚六",u:"https://msearch.51job.com/jobs/chengdu-chq/173360076.html",r:"reczz28ModK8fIwh"},
+{t:"数据标注/AI训练师(双休接收小白)",c:"成都某AI公司",s:"面议",l:"成都",src:"",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"朝九晚六周末双休，接受应届生无经验，语料精确性/逻辑性",u:"https://www.liepin.com/a/79769419.shtml",r:"reczz28ModK8dz6p"},
+{t:"天投集团-产业运营岗(国企)",c:"成都天府新区投资集团",s:"国企待遇",l:"天府新区",src:"",wt:"双休",st:"优先",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"产业运营/项目前期/企业服务，9月27日-10月8日报名（待",u:"https://www.cdttjt.com/go-a35130.htm",r:"reczz28ModK8ecg6"},
+{t:"天府特资-社会人才招聘(蜀道集团)",c:"天府特资(四川)投资管理",s:"国企待遇",l:"成都",src:"",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"蜀道集团全资子公司，特殊资产管理平台，9月25日发布",u:"https://m.cd.bendibao.com/job/201928.shtm",r:"reczz28ModK8fi86"},
+{t:"AI模型研训师(标注/评测,零基础可培训)",c:"重庆创宇后天(知道创宇子公司)",s:"6-10K",l:"成都·武侯区",src:"高校就业",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:82,cm:0,note:"周末双休/朝九晚六,计算机理工科方向可报,50人,投递wan",u:"https://jy.scu.edu.cn/index/index/employjobdetail.html?data=MDAwMDAwMDAwMJG6n3_Ed6imi4qQtLh4Y5aKu9S-yWHddricp9CWi5qikaeWacSdqLqGfaK2w4iil5C4zNbGiL-E",r:"reczz28NCiStns6R"},
+{t:"数据标注/AI训练师",c:"勤为科技有限公司",s:"5-7K",l:"成都·高新区",src:"猎聘",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:78,cm:0,note:"经验不限/本科;高新南,高德实测公交约35分、bike约18",u:"https://m.liepin.com/job/1985880591.shtml",r:"reczz28NCiStndj5"},
+{t:"AI训练师",c:"四川数聚智造科技",s:"5-7K",l:"成都·双流区",src:"猎聘",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:72,cm:0,note:"1-3年/本科,五险一金;双流,通勤bike约15分",u:"https://www.liepin.com/city-guangyuan/zpshujubiaozhuyuan/",r:"reczz28NCiStqNwf"},
+{t:"大厂语音大模型标注/评测(五险一金)",c:"某北京大型互联网公司",s:"7-9K",l:"成都·双流区",src:"猎聘",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:72,cm:0,note:"经验不限/本科;双流,通勤bike约15分",u:"https://m.liepin.com/city-cd/zpyybz/pn0/",r:"reczz28NCiStpTic"},
+{t:"数据标注",c:"深圳数字人才科技",s:"7-8K",l:"成都·高新区",src:"猎聘",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"1-3年/本科;高新南,高德实测公交约35分",u:"https://m.liepin.com/job/1984896883.shtml",r:"reczz28NCiStpLUV"},
+{t:"数据标注(接受0经验应届生,13薪)",c:"某上海上市互联网公司",s:"6-7K",l:"成都(地址待核",src:"猎聘",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"经验不限/本科,接受应届;具体办公地址投递前确认",u:"https://m.liepin.com/a/79825495.shtml",r:"reczz28NCiStnqdq"},
+{t:"华阳街道·基层治理辅助岗(0102,编外)",c:"四川天府新区党工委管委会",s:"待遇按编外(未注明)",l:"成都·天府新区华阳",src:"政府官网",wt:"未注明",st:"自查",ap:0,ps:"未投",fb:"待定",sc:65,cm:0,note:"本科及以上,工学(计算机)可报,1990后出生,无党员要求;",u:"https://www.cdtf.gov.cn/cdtfxq/c130530/2026-09/07/dfef1aff82f04e6db12009597278dcc6/files/c3181563bf94455bb32ed9acac6f4f77.pdf",r:"reczz28NCiSto0MA"},
+{t:"图文内容AI数据标注",c:"某知名公司",s:"5-8K",l:"成都(地址待核",src:"猎聘",wt:"未注明",st:"自查",ap:0,ps:"未投",fb:"待定",sc:65,cm:0,note:"经验不限/本科;具体办公地址投递前确认",u:"https://m.liepin.com/a/79897759.shtml",r:"reczz28NCiStpJYu"},
+{t:"科研助理岗位(国聘行动/免费住宿)",c:"成都高新区管委会",s:"待遇按单位(未注明)",l:"成都·高新区",src:"政府官网",wt:"未注明",st:"自查",ap:0,ps:"未投",fb:"待定",sc:60,cm:0,note:"政府引才渠道,毕业季科研助理岗+专场招聘+免费住宿;高新南公",u:"http://www.cdht.gov.cn/cdht/c139818/2026-07/30/content_3e87746ab919450082b78dd5302f8b0b.shtml",r:"reczz28NCiStnxIT"},
+{t:"AI模型研训师(标注/评测,零基础可培训)",c:"重庆创宇后天(知道创宇子公司)",s:"6-10K",l:"成都·武侯区(茂业中心C座9楼",src:"高校就业",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:82,cm:0,note:"复推岗(10-14推送未投);周末双休/朝九晚六,2026-",u:"https://jy.scu.edu.cn/index/index/employjobdetail.html?data=MDAwMDAwMDAwMJG6n3_Ed6imi4qQtLh4Y5aKu9S-yWHddricp9CWi5qikaeWacSdqLqGfaK2w4iil5C4zNbGiL-E",r:"reczz28O0b7cqbYr"},
+{t:"SFT/AI视频标注",c:"勤为科技",s:"6千-1.2万",l:"成都·高新区(高新智汇园2栋,盛邦街1108号",src:"51job",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:75,cm:0,note:"质检/评测/文本标注,SFT数据方向,朝九晚六不加班双休;高",u:"https://we.51job.com/pc/search?keyword=SFT%2FAI%E8%A7%86%E9%A2%91%E6%A0%87%E6%B3%A8&jobArea=090200",r:"reczz28O0b7coqDv"},
+{t:"ai数据标注+分析",c:"深圳市法本信息技术(外包)",s:"6-8千",l:"成都·高新区(腾讯成都大厦",src:"51job",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:74,cm:0,note:"AI对话评测/标注,Excel必备,SQL/Python/R",u:"https://we.51job.com/pc/search?keyword=%E6%95%B0%E6%8D%AE%E6%A0%87%E6%B3%A8&jobArea=090200",r:"reczz28O0b7cpRdV"},
+{t:"AI训练师/数据标注(双休)",c:"成都盈进发网络科技",s:"6千-1万",l:"成都·锦江区(天府汇中心2302",src:"51job",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:72,cm:0,note:"无需经验可投,六险一金朝九晚六双休,包住有餐补;高德实测公交",u:"https://we.51job.com/pc/search?keyword=AI%E8%AE%AD%E7%BB%83%E5%B8%88&jobArea=090200",r:"reczz28O0b7crY3g"},
+{t:"Agent指令遵循(IF)数据专家",c:"勤为科技",s:"1.2-1.3万",l:"成都·高新区(高新智汇园2栋2楼",src:"51job",wt:"未注明",st:"自查",ap:0,ps:"未投",fb:"待定",sc:72,cm:0,note:"要求计算机相关专业(用户符合),职责为评审Function ",u:"https://we.51job.com/pc/search?keyword=Agent%E6%8C%87%E4%BB%A4%E9%81%B5%E5%BE%AA&jobArea=090200",r:"reczz28O0b7cq2k9"},
+{t:"AI视频主观判断人员(影视方向)",c:"勤为科技",s:"5千-1万",l:"成都·高新区(高新智汇园2栋",src:"51job",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"影视运镜主观评测/码字,朝九晚六不加班双休;高德实测公交约4",u:"https://we.51job.com/pc/search?keyword=AI%E8%A7%86%E9%A2%91%E4%B8%BB%E8%A7%82%E5%88%A4%E6%96%AD&jobArea=090200",r:"reczz28O0b7cqvot"},
+{t:"AI数据标注",c:"深圳万科祥盈管理服务",s:"6-7千",l:"成都·高新区(瑞鑫时代大厦A座",src:"51job",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"视频内容优质度筛选,摄影/传媒/设计/导演系为'相关专业优先",u:"https://we.51job.com/pc/search?keyword=%E6%95%B0%E6%8D%AE%E6%A0%87%E6%B3%A8&jobArea=090200",r:"reczz28O0b7cpTLt"},
+{t:"大厂急招AI影视标志员+应届生可",c:"勤为科技有限公司",s:"6千-1.2万（初级5k/中级8k/高级10-12k）",l:"成都武侯区盛邦街1108号高新智汇园2栋2楼",src:"51job",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:78,cm:0,note:"标签:办公软件/电脑/标注/影视艺术;应届生可;五险一金双休",u:"https://jobs.51job.com/chengdu/173171807.html",r:"reczz28OnzSwUELq"},
+{t:"计算机管理员",c:"成都恩创商务信息咨询有限公司",s:"6-8千",l:"成都高新区府城大道西段399号7栋1单元8层813号",src:"51job",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:69,cm:0,note:"标签:计算机运维/信息软件/人力资源/后勤;培训机构;偏行政",u:"https://jobs.51job.com/chengdu/172386014.html",r:"reczz28OnzSwRsV3"},
+{t:"AI应用专员",c:"四川景地基业集团有限公司",s:"6千-1.2万",l:"成都高新区NIC国创中心",src:"51job",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:71,cm:0,note:"房地产集团;标签:计算机/ai/人工智能;五险一金周末双休;",u:"https://jobs.51job.com/chengdu/172640167.html",r:"reczz28OnzSwS5Ih"},
+{t:"央国企(纯记录文员)编制6K",c:"银雁科技服务集团股份有限公司",s:"6-7千",l:"成都武侯区中国西部信息中心-C幢f1",src:"51job",wt:"双休",st:"优先",ap:0,ps:"未投",fb:"待定",sc:65,cm:0,note:"银雁银行外包;纯记录文员/坐班;双休不加班/接受26届/月休",u:"https://jobs.51job.com/chengdu/172970007.html",r:"reczz28OnzSwTAet"},
+{t:"信息化运营管理(通威股份总部)",c:"通威集团有限公司",s:"7千-1.2万·15薪",l:"成都高新区天府大道中段588号通威国际中心",src:"51job",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:70,cm:0,note:"通威总部;内部运营/信息化/数字化/ERP/PMO;无需经验",u:"https://jobs.51job.com/chengdu/165397466.html",r:"reczz28OnzSwUMOJ"},
+{t:"会员与组织管理部助理",c:"成都高新医学会",s:"5-8千",l:"成都高新区天府新谷-10号楼9楼",src:"51job",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:59,cm:0,note:"非营利医疗学会;学术交流/会议会展/科研;行政助理;高德实测",u:"https://jobs.51job.com/chengdu/171777236.html",r:"reczz28OnzSwSbAs"},
+{t:"成都档案整理专员",c:"深圳市银雁科技有限公司",s:"5-7千",l:"成都武侯区中国西部信息中心-C幢4楼",src:"51job",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:76,cm:0,note:"银雁银行外包;档案整理/带薪培训;五险一金;高德实测tran",u:"https://jobs.51job.com/chengdu/173061743.html",r:"reczz28OnzSwUV17"},
+{t:"贸易综合岗(绥山智宸)",c:"乐山市沙湾区铜河发展（集团）有限公司",s:"8万/年",l:"成都高新区首东置业吉瑞三路99号1栋5单元16层",src:"51job",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:66,cm:0,note:"国企;办公软件/行政/数据整理/供应商对接;需中共党员;周末",u:"https://jobs.51job.com/chengdu/173846198.html",r:"reczz28OnzSwT1Gc"},
+{t:"行政综合岗",c:"富德生命人寿保险股份有限公司四川分公司",s:"5-7千",l:"成都东御街19号富德生命人寿",src:"51job",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:60,cm:0,note:"保险;行政内勤;五险一金;高德实测transit57.6分;",u:"https://jobs.51job.com/chengdu/173554388.html",r:"reczz28OnzSwQgpL"},
+{t:"行政内勤",c:"四川正陆企业管理有限公司",s:"5-6千",l:"成都银海芯座",src:"51job",wt:"未注明",st:"优先",ap:0,ps:"未投",fb:"待定",sc:71,cm:0,note:"培训/办公软件excel/人事/库存管理;高德实测trans",u:"https://jobs.51job.com/chengdu/173908131.html",r:"reczz28OnzSwUpQS"},
+{t:"数据标注师",c:"四川酷喵喵科技有限公司",s:"5-8千",l:"成都·天府新区(天府软件园A区)",src:"51job",wt:"未注明",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:76,cm:0,note:"高德实测：公交34.8分/骑行16.9分双达标；图像/文本/",u:"https://msearch.51job.com/jobs/chengdu-tfxq/170497626.html",r:"reczz28P81i6U6UO"},
+{t:"数据标注",c:"上海宸宇恒科技有限公司（成都）",s:"5千-1万",l:"成都·锦江区(宇川大厦21楼)",src:"51job",wt:"双休",st:"推荐",ap:0,ps:"未投",fb:"待定",sc:80,cm:64,note:"高德实测：公交57.3分达标（骑行64分超，OR规则达标）；",u:"https://msearch.51job.com/jobs/chengdu-jjq/171701643.html",r:"reczz28P81i6XT3M"},
+{t:"行政管理岗(国企代招·公文/会务/档案文字向)",c:"四川省知行人力资源管理有限公司（代招某学术/科研国企）",s:"6.2-7.5千（7.5-9万/年）",l:"成都·武侯区天府四街航兴国际广场2号楼9楼",src:"51job",wt:"双休",st:"待核",ap:0,ps:"未投",fb:"待定",sc:65,cm:0,note:"国企代招文字向岗：公司章程/董事会/党总支/总经理办公会文件",u:"https://msearch.51job.com/jobs/chengdu-whq/173400094.html",r:"reczz28PvH2ZsbJh"},
+{t:"道路救援文职(可转人保正式编制)",c:"银雁科技服务集团股份有限公司（中国人保事故车辆项目驻场）",s:"6-9千",l:"成都·武侯区中国西部信息中心C幢",src:"51job",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:66,cm:0,note:"坐班内勤信息录入，明确无销售/不需外呼/不需外出/无考核；6",u:"https://msearch.51job.com/jobs/chengdu-whq/173180862.html",r:"reczz28PvH2ZuDGs"},
+{t:"办公室档案信息整理",c:"深圳市银雁科技有限公司（事故车辆项目驻场）",s:"6千-1万",l:"成都·武侯区中国西部信息中心-C幢整栋",src:"51job",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:63,cm:0,note:"事故车辆信息系统录入与归档+基础咨询，无销售性质，协助日常行",u:"https://msearch.51job.com/jobs/chengdu-whq/173191616.html",r:"reczz28PvH2ZstDY"},
+{t:"综合文秘岗(某事业单位派遣)",c:"成都某事业单位（成都人才发展集团有限责任公司派遣）",s:"月薪6000元（五险一金，其他福利当面告知）",l:"成都·武侯区人民南路四段(地铁1号线火车南站/桐梓林站一带)",src:"政府官网",wt:"双休",st:"待核",ap:0,ps:"未投",fb:"待定",sc:65,cm:0,note:"事业单位派遣文字向：总结/计划/会议纪要/简报/发言稿/汇报",u:"https://league.rc114.com/School/Position?jobid=BDE54EEE-DCB4-4B9C-8602-D646F7789965",r:"reczz28PvH2Zut32"},
+{t:"成都档案管理员(事故资料登记)",c:"银雁科技服务集团股份有限公司",s:"5-6千（固定5000-6000）",l:"成都·武侯区中国西部信息中心-C幢4楼",src:"51job",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:62,cm:0,note:"车辆事故管理资料登记/报案记录归档/回复咨询，明确不办理业务",u:"https://msearch.51job.com/jobs/chengdu-whq/173051701.html",r:"reczz28PvH2ZtpP7"},
+{t:"成都工单录入员(接受应届生)",c:"银雁科技服务集团股份有限公司",s:"5-6千（底薪4700+绩效综合5000-8000）",l:"成都·武侯区中国西部信息中心-C幢4楼",src:"51job",wt:"双休",st:"自查",ap:0,ps:"未投",fb:"待定",sc:62,cm:0,note:"坐班后勤登记录入整理客户信息，规则判定'工单录入'≠'处理工",u:"https://msearch.51job.com/jobs/chengdu-whq/173056110.html",r:"reczz28PvH2ZuwhN"},
+{t:"数据标注-文科文字功底强-双休可小白",c:"成都小咖邦智能科技有限公司（本原智数集团下属）",s:"未注明（BOSS需登录，投递前问清到手≥5000）",l:"成都·武侯区成都小咖邦智能科技有限公司9楼",src:"BOSS",wt:"双休",st:"待核",ap:0,ps:"未投",fb:"待定",sc:68,cm:0,note:"今日新增（2026-10-22时效验证✅在招，BOSS页面正",u:"https://www.zhipin.com/job_detail/44e0e5c96e5acb230nB-3ti0EVFU.html",r:"reczz28QNB7Gb0Zd"},
+{t:"项目制科研助理(甲状腺乳腺外科)",c:"四川大学华西第四医院(华西公共卫生学院)",s:"面议(参考4-6K,必须确认到手≥5000)",l:"成都·武侯区人民南路三段16号华西第四医院",src:"高校就业",wt:"双休",st:"待核",ap:0,ps:"未投",fb:"待定",sc:65,cm:0,note:"今日新增（2026-10-23时效验证✅在招，招2人，报名截",u:"https://m.gaoxiaojob.com/job/detail/2362180.html",r:"reczz28Qm90ien4p"}
+];
+/* ===== 工具 ===== */
+var PALETTE=["#2563EB","#0E7490","#6D28D9","#0F766E","#C2410C","#4F46E5"];
+function hashColor(name){var h=0;for(var i=0;i<name.length;i++){h=(h*31+name.charCodeAt(i))>>>0}return PALETTE[h%PALETTE.length]}
+function salNum(s){var m=s.match(/([\d.]+)-([\d.]+)K/);return m?+m[2]:0}
+function cmClass(cm){if(cm===0)return"online";if(cm<=15)return"good";if(cm<=20)return"mid";return"far"}
+function cmText(cm){return cm===0?"线上":("骑行"+cm+"分")}
+var STATE={tab:"un",src:"all",score:0,cm:99,kw:"",sort:"score",ruleOnly:false};
+/* ===== 规则判定引擎（override 生效） ===== */
+function parseSalaryMin(s){
+  if(!s)return null;
+  var m;
+  if((m=s.match(/([\d.]+)\s*[-~～]\s*([\d.]+)\s*K/i)))return Math.min(+m[1],+m[2])*1000;
+  if((m=s.match(/([\d.]+)\s*[-~～]\s*([\d.]+)\s*千/)))return Math.min(+m[1],+m[2])*1000;
+  if((m=s.match(/([\d.]+)\s*千\s*[-~～]\s*([\d.]+)\s*万/)))return +m[1]*1000;
+  if((m=s.match(/([\d.]+)\s*[-~～]\s*([\d.]+)\s*万\/年/)))return Math.min(+m[1],+m[2])*10000/12;
+  if((m=s.match(/([\d.]+)\s*万\/年/)))return +m[1]*10000/12;
+  if((m=s.match(/([\d.]+)\s*[-~～]\s*([\d.]+)\s*万/)))return Math.min(+m[1],+m[2])*10000/12;
+  if((m=s.match(/([\d.]+)\s*K/i)))return +m[1]*1000;
+  if((m=s.match(/([\d.]+)\s*千/)))return +m[1]*1000;
+  return null;
+}
+function hitList(name,list){
+  name=(name||"").toLowerCase();
+  return (list||[]).some(function(x){return x&&name.indexOf(x.toLowerCase())>-1});
+}
+function jobRuleFlags(j){
+  var o=RULES.override||{},b=RULES.blk||{},flags=[];
+  if(!o.enabled)return flags;
+  var min=parseSalaryMin(j.s);
+  if(min!=null){
+    if(min<o.salary_min_take_home)flags.push("薪资低于"+o.salary_min_take_home+"底线");
+    if(o.salary_max_push&&min>o.salary_max_push)flags.push("薪资超上限");
+  }
+  if(j.cm>0&&j.cm>o.bike_max_min){
+    var tt=(j.l||"")+(j.note||"");
+    var tm=tt.match(/公交\s*([\d.]+)\s*分/);
+    if(!(tm&&+tm[1]<=o.transit_max_min))flags.push("骑行超"+o.bike_max_min+"分");
+  }
+  if(o.block_outsource&&hitList(j.c,b.outsource))flags.push("外包公司");
+  if(o.block_company_blacklist&&hitList(j.c,b.company))flags.push("公司黑名单");
+  if(hitList(j.t,b.roles))flags.push("排除角色");
+  return flags;
+}
+/* ===== 渲染 ===== */
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function filtered(){
+  return JOBS.filter(function(j){
+    if(STATE.tab==="un"&&j.ap)return false;if(STATE.tab==="un"&&j.note&&j.note.indexOf("已关闭")>-1)return false;
+    if(STATE.tab==="applied"&&!j.ap)return false;
+    if(STATE.src!=="all"&&j.src!==STATE.src)return false;
+    if(j.sc<STATE.score)return false;
+    if(STATE.cm<99&&(j.cm>STATE.cm||j.cm===0))return false;
+    if(STATE.kw&&!(j.t+j.c).toLowerCase().indexOf(STATE.kw.toLowerCase())>-1)return false;
+    if(STATE.ruleOnly&&jobRuleFlags(j).length)return false;
+    return true;
+  }).sort(function(a,b){
+    if(STATE.sort==="cm")return a.cm-b.cm;
+    if(STATE.sort==="sal")return salNum(b.s)-salNum(a.s);
+    return b.sc-a.sc;
+  });
+}
+function cardHtml(j){
+  var cml=cmClass(j.cm),cmt=cmText(j.cm);
+  var tag=j.st==="推荐"?'<span class="tag-mini reco">推荐</span>':j.st==="优先"?'<span class="tag-mini prio">优先</span>':j.st==="自查"?'<span class="tag-mini selfcheck">自查</span>':'<span class="tag-mini check">待核</span>';
+  var wtCls=j.wt==="双休"?"":" none";
+  var fl=jobRuleFlags(j);
+  var flHtml=fl.length?'<div style="margin-top:4px">'+fl.map(function(f){return'<span class="tag-mini" style="background:var(--red-50);color:var(--red);font-size:10.5px">⚠ '+esc(f)+'</span>'}).join("")+'</div>':'';
+  return '<article class="job'+(j.ap?' applied':'')+'" data-u="'+j.u+'">'+
+    '<div class="job-head"><div class="job-corp">'+
+      '<div class="avatar" style="background:'+hashColor(j.c)+'">'+esc(j.c[0])+'</div>'+
+      '<div><div class="job-title">'+tag+' '+esc(j.t)+'</div><div class="job-company">'+esc(j.c)+'</div></div>'+
+    '</div>'+
+    '<div class="score"><div class="score-num">'+j.sc+'</div><div class="score-label">综合分</div>'+
+    '<div class="score-bar"><i style="width:'+j.sc+'%"></i></div></div></div>'+
+    '<div class="job-meta">'+
+      '<span class="pill salary">'+esc(j.s)+'</span>'+
+      '<span class="pill cm '+cml+'">'+cmt+'</span>'+
+      '<span class="pill worktime'+wtCls+'">'+(j.wt==="双休"?"周末双休":"作息未注明")+'</span>'+
+      '<span class="pill src">'+esc(j.src)+'</span>'+
+    '</div>'+flHtml+
+    '<div class="job-note">'+esc(j.l)+' ｜ '+esc(j.note)+'</div>'+
+    '<div class="job-foot">'+
+      (j.note&&j.note.indexOf("已关闭")>-1?'<div class="apply-btn done" style="background:#999">已关闭</div>':
+        '<a class="apply-btn" href="'+j.u+'" target="_blank" rel="noopener">投递</a>'+
+        '<select class="st-sel card" data-r="'+esc(j.r)+'" data-old="'+esc(j.ps||"未投")+'" title="更新投递状态到岗位库（自动写回多维表格并归纳卡片）">'+
+          ['未投','已投','已回复','面试','婉拒','入职'].map(function(s){return '<option value="'+s+'"'+((j.ps||"未投")===s?' selected':'')+'>'+s+'</option>'}).join('')+
+        '</select>')+
+    '</div></article>';
+}
+function render(){
+  var list=filtered();
+  var grid=document.getElementById("grid");
+  if(!list.length){
+    grid.innerHTML='<div class="empty"><div class="big">0</div>没有符合条件的岗位<br>试试放宽筛选条件</div>';
+  }else if(STATE.tab==="applied"){
+    /* 已投界面：按投递状态细分归纳（未投不在此列） */
+    var GROUPS=['已投','已回复','面试','婉拒','入职'];
+    var html="";
+    GROUPS.forEach(function(g){
+      var items=list.filter(function(j){return (j.ps||"已投")===g});
+      if(!items.length)return;
+      html+='<div class="group-h"><b>'+g+'</b><span class="cnt">'+items.length+' 条</span></div>'+items.map(cardHtml).join("");
+    });
+    grid.innerHTML=html||'<div class="empty"><div class="big">0</div>没有符合条件的岗位<br>试试放宽筛选条件</div>';
+  }else{
+    grid.innerHTML=list.map(cardHtml).join("");
+  }
+  /* 规则统计：达标 vs 违反 */
+  var o=RULES.override||{};
+  var passAll=JOBS.filter(function(j){return jobRuleFlags(j).length===0}).length;
+  var failAll=JOBS.length-passAll;
+  var ruleTxt=o.enabled?("规则达标 "+passAll+" / 违反 "+failAll):"规则过滤已关闭";
+  document.getElementById("resultText").textContent=list.length+" 个岗位 · "+ruleTxt;
+  document.getElementById("cntUn").textContent=JOBS.filter(function(j){return !j.ap&&!(j.note&&j.note.indexOf("已关闭")>-1)}).length;
+  document.getElementById("cntAp").textContent=JOBS.filter(function(j){return j.ap}).length;
+  document.getElementById("cntAll").textContent=JOBS.length;
+}
+/* ===== 事件 ===== */
+function bindChips(id,key,onMap){
+  document.getElementById(id).addEventListener("click",function(e){
+    var b=e.target.closest(".chip");if(!b)return;
+    Array.prototype.forEach.call(this.children,function(c){c.classList.remove("on")});
+    b.classList.add("on");
+    STATE[key]=onMap?onMap(b.dataset.v):b.dataset.v;
+    if(key==="tab"){Array.prototype.forEach.call(document.getElementById("tabsWrap").children,function(t){t.classList.remove("on")})}
+    render();
+  });
+}
+bindChips("chipSrc","src");
+bindChips("chipScore","score",function(v){return +v});
+bindChips("chipCm","cm",function(v){return +v});
+bindChips("chipState","tab",function(v){return v});
+document.getElementById("tabsWrap").addEventListener("click",function(e){
+  var t=e.target.closest(".tab");if(!t)return;
+  Array.prototype.forEach.call(this.children,function(x){x.classList.remove("on")});
+  t.classList.add("on");STATE.tab=t.dataset.t;
+  Array.prototype.forEach.call(document.getElementById("chipState").children,function(c){c.classList.remove("on")});
+  document.getElementById("chipState").children[0].classList.add("on");
+  render();
+});
+var kwTimer;
+document.getElementById("kw").addEventListener("input",function(){
+  clearTimeout(kwTimer);
+  kwTimer=setTimeout(function(){STATE.kw=document.getElementById("kw").value.trim();render()},200);
+});
+document.getElementById("sortSel").addEventListener("change",function(){STATE.sort=this.value;render()});
+/* ===== 右侧工作台面板（豆包工作台式） ===== */
+function spToast(msg,ok){
+  var t=document.getElementById("toast");
+  t.innerHTML=ok?("<b>✓</b> "+esc(msg)):esc(msg);
+  t.classList.add("show");
+  clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove("show")},4200);
+}
+function isClosed(j){
+  return !!(j.note&&j.note.indexOf("已关闭")>-1);
+}
+function trackGroups(){
+  var un=[],ap=[],closed=[];
+  JOBS.forEach(function(j){if(isClosed(j))closed.push(j);else if(j.ap)ap.push(j);else un.push(j)});
+  return {un:un,ap:ap,closed:closed};
+}
+function renderTrack(){
+  var g=trackGroups();
+  var ST_SEL=['已投','已回复','面试','婉拒','入职'];
+  var FB_SEL=['待定','合适','不合适','已投'];
+  var sec=function(title,cnt,arr,dot,badge){
+    var items=arr.map(function(j){
+      var bg=badge==="un"?"var(--blue-50);color:var(--blue-700)":badge==="ap"?"var(--green-50);color:var(--green)":"#F2F4F7;color:var(--muted)";
+      var lab=badge==="un"?"未投":badge==="ap"?"已投":"已关闭";
+      var stSel=badge==="ap"?('<select class="st-sel" data-r="'+esc(j.r)+'" data-old="'+esc(j.ps||"已投")+'" title="更新投递状态到多维表格">'+
+        ST_SEL.map(function(s){return '<option value="'+s+'"'+(j.ps===s?' selected':'')+'>'+s+'</option>'}).join('')+
+        '</select>'):'';
+      var fbSel=badge==="ap"?('<select class="fb-sel" data-r="'+esc(j.r)+'" data-ps="'+esc(j.ps||"已投")+'" data-old="'+esc(j.fb||"待定")+'" title="更新投递反馈到多维表格">'+
+        FB_SEL.map(function(s){return '<option value="'+s+'"'+(j.fb===s?' selected':'')+'>'+s+'</option>'}).join('')+
+        '</select>'):'';
+      return '<div class="v-item" data-u="'+esc(j.u)+'"><span class="dot" style="background:'+dot+'"></span>'+
+        '<span class="vt-t">'+esc(j.t)+'</span><span class="vt-c">'+esc(j.c)+'</span>'+
+        '<span class="vt-s">'+esc(j.s)+'</span><span class="v-badge" style="background:'+bg+'">'+lab+'</span>'+stSel+fbSel+'</div>';
+    }).join("");
+    return '<div class="v-card"><h3>'+title+'<span class="cnt">'+cnt+' 条</span></h3><div class="v-list">'+(items||'<div class="v-line">暂无记录</div>')+'</div></div>';
+  };
+  document.getElementById("viewTrack").innerHTML=
+    '<div class="view-title">投递追踪</div>'+
+    '<div class="view-sub">岗位库 '+JOBS.length+' 条 · 已投递岗位可直接更新状态（已回复 / 面试 / 婉拒 / 入职）与反馈（合适 / 不合适 / 待定），同步写回多维表格</div>'+
+    '<div class="v-kpis">'+
+      '<div class="v-kpi"><div class="k-num" style="color:var(--blue)">'+g.un.length+'</div><div class="k-lab">未投 · 可投</div></div>'+
+      '<div class="v-kpi"><div class="k-num" style="color:var(--green)">'+g.ap.length+'</div><div class="k-lab">已投递</div></div>'+
+      '<div class="v-kpi"><div class="k-num" style="color:var(--muted)">'+g.closed.length+'</div><div class="k-lab">已关闭</div></div>'+
+    '</div>'+
+    sec("未投岗位",g.un.length,g.un,"#2563EB","un")+
+    sec("已投递岗位",g.ap.length,g.ap,"#059669","ap")+
+    sec("已关闭岗位",g.closed.length,g.closed,"#D0D5DD","closed");
+}
+function renderStats(){
+  var g=trackGroups();
+  var srcs={};JOBS.forEach(function(j){var k=j.src||"平台";srcs[k]=(srcs[k]||0)+1});
+  var sorted=Object.keys(srcs).sort(function(a,b){return srcs[b]-srcs[a]});
+  var max=Math.max.apply(null,Object.keys(srcs).map(function(k){return srcs[k]}));
+  var o=RULES.override||{};
+  var passAll=JOBS.filter(function(j){return jobRuleFlags(j).length===0}).length;
+  var sts={};JOBS.forEach(function(j){var k=j.st||"未标注";sts[k]=(sts[k]||0)+1});
+  var stOrder=["推荐","优先","待核","自查"];
+  var salBins=[["5K以下",0],["5-8K",0],["8-12K",0],["12K以上",0],["面议/未注明",0]];
+  JOBS.forEach(function(j){var n=parseSalaryMin(j.s);
+    if(n==null)salBins[4][1]++;
+    else if(n<5000)salBins[0][1]++;
+    else if(n<=8000)salBins[1][1]++;
+    else if(n<=12000)salBins[2][1]++;
+    else salBins[3][1]++});
+  var cmOk=0,cmFar=0,cmZero=0;
+  JOBS.forEach(function(j){
+    if(j.cm===0){cmZero++;return}
+    var tt=(j.l||"")+(j.note||""),tm=tt.match(/公交\s*([\d.]+)\s*分/);
+    if(j.cm<=o.bike_max_min||(tm&&+tm[1]<=o.transit_max_min))cmOk++;else cmFar++;
+  });
+  var h='<div class="view-title">数据看板</div>'+
+    '<div class="view-sub">岗位库 '+JOBS.length+' 条 · 全部指标由岗位库真实记录现算</div>'+
+    '<div class="v-kpis">'+
+      '<div class="v-kpi"><div class="k-num" style="color:var(--blue)">'+g.un.length+'</div><div class="k-lab">未投岗位</div></div>'+
+      '<div class="v-kpi"><div class="k-num" style="color:var(--green)">'+g.ap.length+'</div><div class="k-lab">已投递</div></div>'+
+      '<div class="v-kpi"><div class="k-num" style="color:var(--amber)">'+passAll+'</div><div class="k-lab">规则达标</div></div>'+
+      '<div class="v-kpi"><div class="k-num" style="color:var(--red)">'+(JOBS.length-passAll)+'</div><div class="k-lab">规则违反</div></div>'+
+    '</div>';
+  h+='<div class="v-grid">';
+  h+='<div class="v-card"><h3>来源构成<span class="cnt">'+JOBS.length+' 条</span></h3>'+
+    sorted.map(function(k){var n=srcs[k],pct=Math.round(n/max*100);
+      return '<div class="v-row"><b>'+esc(k)+'</b><span class="v-bar"><i style="width:'+pct+'%"></i></span><b style="min-width:30px;text-align:right">'+n+'</b></div>';
+    }).join('')+'</div>';
+  h+='<div class="v-card"><h3>状态标签分布<span class="cnt">'+JOBS.length+' 条</span></h3>'+
+    stOrder.map(function(k){return '<div class="v-row"><b>'+esc(k)+'</b><span class="v-bar"><i style="width:'+Math.round((sts[k]||0)/JOBS.length*100)+'%"></i></span><b style="min-width:30px;text-align:right">'+(sts[k]||0)+'</b></div>'}).join("")+
+    '<div class="v-line" style="margin-top:6px">口径：按岗位记录的状态标签计数。</div></div>';
+  h+='<div class="v-card"><h3>薪资带分布<span class="cnt">'+JOBS.length+' 条</span></h3>'+
+    salBins.map(function(b){return '<div class="v-row"><b>'+b[0]+'</b><span class="v-bar"><i style="width:'+Math.round(b[1]/JOBS.length*100)+'%"></i></span><b style="min-width:30px;text-align:right">'+b[1]+'</b></div>'}).join("")+
+    '<div class="v-line" style="margin-top:6px">口径：按薪资区间下限归类（面议 / 未注明单独计）。</div></div>';
+  h+='<div class="v-card"><h3>通勤达标<span class="cnt">已实测口径</span></h3>'+
+    '<div class="v-row"><b>达标</b><span class="v-bar"><i style="width:'+Math.round(cmOk/ (cmOk+cmFar||1)*100)+'%;background:var(--green)"></i></span><b style="min-width:30px;text-align:right">'+cmOk+'</b></div>'+
+    '<div class="v-row"><b>超标</b><span class="v-bar"><i style="width:'+Math.round(cmFar/ (cmOk+cmFar||1)*100)+'%;background:var(--red)"></i></span><b style="min-width:30px;text-align:right">'+cmFar+'</b></div>'+
+    '<div class="v-row"><b>线上/待测</b><span class="v-bar"><i style="width:'+Math.round(cmZero/JOBS.length*100)+'%"></i></span><b style="min-width:30px;text-align:right">'+cmZero+'</b></div>'+
+    '<div class="v-line" style="margin-top:6px">口径：骑行 ≤'+esc(o.bike_max_min)+' 分或公交/地铁 ≤'+esc(o.transit_max_min)+' 分任一达标即达标（按记录内高德实测值）。</div></div>';
+  h+='<div class="v-card"><h3>规则状态<span class="cnt">'+(o.enabled?"已启用":"已关闭")+'</span></h3>'+
+    '<div class="v-line">骑行 ≤ '+esc(o.bike_max_min)+' 分 ｜ 公交/地铁 ≤ '+esc(o.transit_max_min)+' 分<br>'+
+    '到手底线 ≥ '+esc(o.salary_min_take_home)+' 元 ｜ 最高推送 '+esc(o.salary_max_push)+' 元<br>'+
+    '外包拦截 '+(o.block_outsource?"开启":"背景参考")+' ｜ 公司黑名单 '+(o.block_company_blacklist?"开启":"背景参考")+'</div>'+
+    '<div style="margin-top:10px"><a class="v-btn ghost" href="javascript:void(0)" onclick="document.getElementById(\'spEntries\').children[1].click()">去规则中心调整</a></div></div>';
+  h+='</div>';
+  document.getElementById("viewStats").innerHTML=h;
+}
+/* ===== 简历画像（AI 定制用：技能/经历词库，命中岗位要求后生成定制动作与提示词） ===== */
+var RESUME_PROFILE={
+  name:"求职者",
+  base:"24岁 ｜ 计算机本科 2025届 ｜ 西南交通大学希望学院 ｜ 现居成都双流·YOUR_HOME_PLACE ｜ 保留应届生身份（无社保/实习记录）",
+  skills:[
+    {kw:["AIGC","AI创作","视频生成","漫剧","影视","剪辑","Prompt","提示词","图像生成","即梦","可灵"],label:"AIGC 创作（AI视频/漫剧作品集）"},
+    {kw:["AI工具","AI应用","大模型","智能体","Agent","自动化","工作流"],label:"AI 工具深度应用（搭建自动化求职工作流）"},
+    {kw:["数学","高中数学","1对1","线上授课","讲师","教学","教研","答疑"],label:"高中数学线上 1对1 讲师（拆解知识点与解题思路）"},
+    {kw:["感统","训练","儿童","特教","康复","教案"],label:"儿童感统训练 7 个月（评估+个性化训练计划）"},
+    {kw:["书法","书写","板书"],label:"书法特长（板书/卷面整洁）"},
+    {kw:["办公","Excel","表格","文档","数据整理","台账"],label:"办公软件熟练（Excel/表格/数据整理）"},
+    {kw:["行政","助理","编外","事业单位","国企","档案","会务"],label:"行政/事务类经历（教培教务+感统教学档案）"}
+  ],
+  education:"计算机科学与技术 · 本科 · 西南交通大学希望学院（2025届）",
+  highlights:"保留应届生身份；无社保/实习记录（可走应届通道）；自驱力强——7个月感统教学 + 线上数学讲师 + 自建 AI 求职系统实战"
+};
+
+/* 本地规则引擎：从岗位标题/备注提取要求关键词，返回 [{kw, weight}] */
+function extractJobKeywords(job){
+  var txt=[job.t||"",job.note||"",job.c||""].join(" ");
+  var banks=[
+    {cat:"AI内容创作",kw:["AIGC","AI视频","AI创作","漫剧","影视","剪辑","短视频","视频制作","内容创作","提示词","Prompt","图像生成","数字人","编导","特效"]},
+    {cat:"数据标注/评测",kw:["标注","评测","训练","精标","Caption","数据","质检","审核","评估","模型"]},
+    {cat:"运营/产品",kw:["运营","产品","用户","增长","活动","内容运营","社群"]},
+    {cat:"教培/教研",kw:["讲师","教师","数学","教研","教学","教务","助教","授课","辅导"]},
+    {cat:"行政/政企",kw:["行政","助理","编外","编制","事业单位","国企","档案","会务","文员","公文"]},
+    {cat:"通勤/待遇",kw:["双休","周末双休","朝九晚六","五险一金","13薪","通勤"]},
+    {cat:"经验要求",kw:["经验不限","零基础","无经验","1-3年","3-5年","本科","大专","应届"]}
+  ];
+  var out=[];
+  banks.forEach(function(b){
+    var hits=b.kw.filter(function(k){return txt.indexOf(k)>-1});
+    if(hits.length)out.push({cat:b.cat,kw:hits});
+  });
+  return out;
+}
+/* 命中画像：岗位关键词 → 我的可呈现经历 */
+function matchResumeSkills(job){
+  var txt=[job.t||"",job.note||"",job.c||""].join(" ");
+  var hits=RESUME_PROFILE.skills.map(function(s){
+    var matched=s.kw.filter(function(k){return txt.indexOf(k)>-1});
+    return {label:s.label,matched:matched,hit:matched.length>0};
+  }).filter(function(s){return s.hit});
+  return hits;
+}
+/* 风险点：岗位要求与我相悖的硬性条件 */
+function riskCheck(job){
+  var txt=[job.t||"",job.note||""].join(" ");
+  var risks=[];
+  if(/1-3年|3-5年|5-10年/.test(txt))risks.push("注明需多年经验，应届可投性低——投前先电话/沟通确认是否接受应届培养");
+  if(/CET|英语四级|英语六级|英语4级/.test(txt))risks.push("英语证书硬门槛（你无 CET 证书），若为硬性则不建议投");
+  if(/销售|客服|主播|电销/.test(txt)&&RULES.override.exclude_roles_keywords&&RULES.override.exclude_roles_keywords.length)risks.push("命中你的排除角色关键词（销售/客服/主播），默认不推");
+  if(job.ps==="婉拒")risks.push("此岗位你已婉拒过，系统默认不再重复推进");
+  if(job.note&&job.note.indexOf("已关闭")>-1)risks.push("岗位已关闭，仅保留记录");
+  return risks;
+}
+/* 生成定制动作（可执行的简历调整清单） */
+function tailorActions(job,hits){
+  var acts=[];
+  var txt=[job.t||"",job.note||""].join(" ");
+  if(/标注|评测|训练|Caption|数据/.test(txt))acts.push("把「AI 工具深度应用 + 大模型协作经验」提到技能第一条，并量化：搭建自动化求职工作流，日处理多来源岗位并沉淀 100+ 条岗位库");
+  if(/AIGC|AI视频|漫剧|剪辑|创作|视频制作/.test(txt))acts.push("把「AIGC 创作（AI视频/漫剧作品集）」置顶，附作品集链接，用『自建 AI 求职系统实战』证明执行力");
+  if(/数学|讲师|教学|教研|辅导|授课/.test(txt))acts.push("突出「高中数学线上 1对1 讲师」：拆解知识点与解题思路，能独立备课、控场、答疑");
+  if(/行政|助理|编外|档案|文员|会务/.test(txt))acts.push("突出「办公软件熟练 + 行政事务经历」：教案/台账/学员档案整理，细致有条理");
+  if(/运营|产品/.test(txt))acts.push("把 AI 工具应用包装为「内容/产品运营辅助」：用 AI 批量产出内容、搭建自动化流程，提质增效");
+  if(/感统|儿童|特教|训练/.test(txt))acts.push("突出「儿童感统训练 7 个月」：评估学员情况、制定个性化训练计划，家长反馈佳");
+  if(!acts.length)acts.push("无强关键词命中，建议：按岗位主线人工选择 1-2 个最相关经历置顶，其余精简为一行");
+  if(acts.length>3)acts=acts.slice(0,3);
+  return acts;
+}
+/* 一键复制的定制简历提示词（粘贴到豆包/任意 AI 生成定制版） */
+function tailorPrompt(job,acts,hits){
+  var lines=[
+    "【角色】资深简历优化师，只基于事实改写，不虚构经历。",
+    "【目标岗位】"+job.t+"（"+job.c+"，"+(job.s||"薪资面议")+"）",
+    "【岗位要求线索】"+(job.note||"（无备注，按岗位名称推断）"),
+    "【我的简历事实】"+RESUME_PROFILE.base,
+    "【教育】"+RESUME_PROFILE.education,
+    "【可呈现经历】"+RESUME_PROFILE.skills.map(function(s){return s.label}).join("；"),
+    "【定制动作】"+(acts.join("；")),
+    "【输出要求】生成一份针对该岗位的定制简历正文（Word 可用文本），经历按匹配度排序，删减无关内容，语言精炼、量化、无夸大；同时给出一句 30 字以内的求职自荐语。"
+  ];
+  return lines.join("\n");
+}
+function renderResume(){
+  var h='<div class="view-title">简历中心</div>'+
+    '<div class="view-sub">选择岗位 → AI 按岗位定制简历：提取岗位要求 → 匹配你的画像 → 生成定制动作 + 一键复制定制提示词（粘贴到豆包/任意 AI 即可生成定制版简历）</div>';
+  /* 上半：基础信息（不变） */
+  h+='<div class="v-grid">';
+  h+='<div class="v-card"><h3>简历文件</h3>'+
+    '<div class="v-line" style="margin-bottom:12px">PDF 简历（本地工作台内嵌打开）</div>'+
+    '<a class="v-btn" href="/resume" target="_blank" rel="noopener">打开简历文件</a></div>';
+  h+='<div class="v-card"><h3>求职画像</h3>'+
+    '<div class="v-line">'+RESUME_PROFILE.base.replace(/<br>/g,"<br>")+'</div></div>';
+  h+='<div class="v-card"><h3>求职方向（3 条主线）</h3>'+
+    '<div class="v-tags"><span class="v-tag">AI 数据 · 标注 / 训练 / 评测</span><span class="v-tag">教培 · 数学讲师</span><span class="v-tag amber">政企 / 高校 · 行政科研助理</span></div></div>';
+  h+='<div class="v-card"><h3>个人技能</h3>'+
+    '<div class="v-tags">'+RESUME_PROFILE.skills.map(function(s){return '<span class="v-tag">'+esc(s.label)+'</span>'}).join("")+'</div></div>';
+  h+='</div>';
+  /* 下半：AI 定制简历 */
+  h+='<div class="v-card" style="margin-top:16px;border:1px solid var(--blue-50);background:#FBFDFF"><h3 style="color:var(--blue-700)">AI 按岗位定制简历</h3>'+
+    '<div class="v-line" style="margin-bottom:10px">从岗位库选一个岗位（或粘贴目标岗位描述），系统用本地规则引擎做岗位要求→画像匹配，生成定制建议。</div>'+
+    '<select id="rsJobSel" class="rd-sel" style="width:100%;max-width:520px;padding:9px 10px;margin-bottom:8px">';
+  var opts=JOBS.filter(function(j){return !(j.note&&j.note.indexOf("已关闭")>-1)});
+  h+='<option value="">— 从岗位库选择（'+opts.length+' 个有效岗位）—</option>';
+  opts.forEach(function(j,i){h+='<option value="'+i+'">'+esc(j.t+' ｜ '+j.c+' ｜ '+(j.s||"面议")+' ｜ 分'+esc(j.sc)+'）')+'</option>'});
+  h+='</select>';
+  h+='<div class="v-line" style="font-size:12px;color:var(--muted)">也可以直接粘贴目标岗位 JD：</div>'+
+    '<textarea id="rsJdText" class="rd-txt" style="width:100%;max-width:520px;min-height:64px;resize:vertical;margin:6px 0 10px" placeholder="粘贴岗位 JD 文本（可选，优先于下拉选择）"></textarea><br>'+
+    '<button class="v-btn" id="rsGenBtn">生成定制方案</button></div>';
+  h+='<div id="rsResult" style="margin-top:14px"></div>';
+  document.getElementById("viewResume").innerHTML=h;
+  document.getElementById("rsGenBtn").addEventListener("click",function(){
+    var sel=document.getElementById("rsJobSel"),jd=document.getElementById("rsJdText").value.trim();
+    var job=null;
+    if(jd){job={t:jd.substring(0,60),c:"（粘贴JD）",s:"",note:jd}}  // 粘贴 JD：t=首行摘要
+    else if(sel.value!==""){job=JOBS[+sel.value];}
+    if(!job){spToast("请先选择一个岗位或粘贴 JD");return}
+    var kws=extractJobKeywords(job);
+    var hits=matchResumeSkills(job);
+    var risks=riskCheck(job);
+    var acts=tailorActions(job,hits);
+    var prompt=tailorPrompt(job,acts,hits);
+    var r='<div class="v-card"><h3>定制方案 · '+esc(job.t)+'</h3><div class="v-line" style="font-size:12.5px;color:var(--muted)">'+esc(job.c)+' ｜ '+(job.s?esc(job.s):"薪资面议")+'</div>'+
+      '<div class="v-sec"><div class="v-sec-t">① 岗位要求关键词（自动提取）</div>'+
+      '<div class="v-tags">'+(kws.length?kws.map(function(b){return '<span class="v-tag">'+esc(b.cat)+'：'+b.kw.map(esc).join(" / ")+'</span>'}).join(""):'<span class="v-tag">未能提取关键词（JD 过短）</span>')+'</div></div>'+
+      '<div class="v-sec"><div class="v-sec-t">② 你的画像命中（可优先展示）</div>'+
+      '<div class="v-tags">'+(hits.length?hits.map(function(x){return '<span class="v-tag" style="background:var(--green-50);color:var(--green)">✓ '+esc(x.label)+'</span>'}).join(""):'<span class="v-tag">未命中明显技能，按岗位主线人工定 1-2 项</span>')+'</div></div>'+
+      '<div class="v-sec"><div class="v-sec-t">③ 定制动作（简历怎么改）</div>'+
+      acts.map(function(a){return '<div class="v-line" style="padding:3px 0">· '+esc(a)+'</div>'}).join("")+'</div>'+
+      (risks.length?'<div class="v-sec"><div class="v-sec-t" style="color:var(--red)">⚠ 风险提示</div>'+
+        risks.map(function(a){return '<div class="v-line" style="padding:3px 0;color:var(--red)">· '+esc(a)+'</div>'}).join("")+'</div>':'')+
+      '<div class="v-sec"><div class="v-sec-t">④ 定制提示词（复制 → 粘贴到豆包/AI 生成定制版简历）</div>'+
+      '<textarea class="rd-txt" id="rsPrompt" style="width:100%;min-height:150px;resize:vertical;font-size:12px;line-height:1.6">'+esc(prompt)+'</textarea>'+
+      '<button class="v-btn ghost" id="rsCopyBtn" style="margin-top:8px">复制提示词</button></div></div>';
+    document.getElementById("rsResult").innerHTML=r;
+    document.getElementById("rsCopyBtn").addEventListener("click",function(){
+      var ta=document.getElementById("rsPrompt");
+      ta.select();document.execCommand("copy");
+      spToast("提示词已复制，去豆包粘贴生成定制版简历");
+    });
+  });
+}
+function renderRoad(){
+  var buckets=[
+    {name:"AI 数据 · 标注 / 训练 / 评测",prio:"high",kw:/AI|标注|训练|评测|模型|数据|Prompt|提示词/},
+    {name:"教培 · 数学讲师 / 教研",prio:"medium",kw:/数学|讲师|教师|教育|教学|教研|助教/},
+    {name:"政企 / 高校 · 行政科研助理",prio:"low",kw:/政府|高校|大学|医院|局|集团|编制|行政|科研|助理|档案/}
+  ];
+  var cards=buckets.map(function(b){
+    var jobs=JOBS.filter(function(j){return b.kw.test(j.t+j.c)});
+    var reco=jobs.filter(function(j){return j.st==="推荐"}).length;
+    var top=jobs.slice(0,4).map(function(j){
+      return '<div class="v-item" data-u="'+esc(j.u)+'"><span class="dot" style="background:'+(j.ap?"#059669":"#2563EB")+'"></span>'+
+        '<span class="vt-t">'+esc(j.t)+'</span><span class="vt-c">'+esc(j.c)+'</span><span class="vt-s">'+esc(j.s)+'</span>'+
+        '<span class="v-badge" style="background:'+(j.ap?"var(--green-50);color:var(--green)":"var(--blue-50);color:var(--blue-700)")+'">'+(j.ap?"已投":"可投")+'</span></div>';
+    }).join("");
+    return '<div class="v-card"><h3><span style="display:flex;align-items:center;gap:8px">'+esc(b.name)+'<span class="v-pri '+b.prio+'">'+b.prio+'</span></span><span class="cnt">匹配 '+jobs.length+' 条</span></h3>'+
+      '<div class="v-line" style="margin-bottom:8px">其中推荐投 '+reco+' 条 ｜ 未投 '+jobs.filter(function(j){return !j.ap}).length+' 条</div>'+
+      '<div class="v-list">'+(top||'<div class="v-line">暂无匹配岗位</div>')+'</div></div>';
+  }).join("");
+  /* 面试准备：选岗位 → 生成面试准备提示词 */
+  var av=JOBS.filter(function(j){return j.ap&&!(j.note&&j.note.indexOf("已关闭")>-1)});
+  var opts='<option value="">— 从已投递岗位中选择 —</option>'+av.map(function(j,i){
+    return '<option value="'+i+'">'+esc(j.t+' ｜ '+j.c+' ｜ '+(j.ps||"未注")+'）')+'</option>';
+  }).join("")+'<option value="__all">（不选具体岗 · 生成通用面试准备）</option>';
+  document.getElementById("viewRoad").innerHTML=
+    '<div class="view-title">求职路线</div>'+
+    '<div class="view-sub">3 条主线 · 口径：按岗位标题 + 公司名关键词归类，匹配数与推荐数为岗位库真实统计</div>'+
+    '<div class="v-grid">'+cards+'</div>'+
+    '<div class="v-card" style="margin-top:16px;border:1px solid var(--green-50);background:#FDFFFB"><h3 style="color:var(--green)">面试准备</h3>'+
+    '<div class="v-line" style="margin-bottom:10px">选一个已投递岗位，生成「岗位理解 + 自我介绍的 STAR 提示词 + 高频问答」，复制到豆包/任意 AI 进行模拟面试。</div>'+
+    '<select id="rdIntSel" class="rd-sel" style="width:100%;max-width:520px;padding:9px 10px;margin-bottom:8px">'+opts+'</select>'+
+    '<button class="v-btn ghost" id="rdIntGen" style="margin-bottom:10px">生成面试准备卡</button>'+
+    '<div id="rdIntOut"></div></div>';
+  document.getElementById("rdIntGen").addEventListener("click",function(){
+    var sel=document.getElementById("rdIntSel");
+    var idx=sel.value;
+    var job=null;
+    if(idx!==""&&idx!=="__all")job=av[+idx];
+    var p;
+    if(job){
+      var txt=[job.t,job.note||""].join(" ");
+      var dir=/AI|标注|训练|评测|模型|数据/.test(txt)?"AI 数据/内容创作":
+             (/数学|讲师|教学|教研/.test(txt)?"教培 · 数学讲师":"综合（按岗位实际定）");
+      p=[
+        "【角色】资深面试教练，用你真实的经历准备面试，不虚构。",
+        "【目标岗位】"+job.t+"（"+job.c+"，"+(job.s||"薪资面议")+"）",
+        "【方向】"+dir,
+        "【岗位要求线索】"+(job.note||"按岗位名称推断"),
+        "【我的经历事实】"+RESUME_PROFILE.base+"；可呈现经历："+RESUME_PROFILE.skills.map(function(s){return s.label}).join("；"),
+        "【输出】① 30 字岗位理解一句话（面试开场用）；② 自我介绍的 STAR 框架（结合我真实经历，逐条写）；③ 该岗位高频 5 问 + 我的应答要点（诚实、不夸大）；④ 反问面试官 2 个高质量问题。"
+      ].join("\n");
+    }else{
+      p=[
+        "【角色】资深面试教练，用你真实的经历准备面试，不虚构。",
+        "【我的经历事实】"+RESUME_PROFILE.base+"；可呈现经历："+RESUME_PROFILE.skills.map(function(s){return s.label}).join("；"),
+        "【输出】通用面试准备：① 1 分钟自我介绍的 STAR 版本；② 应届生高频 8 问（为何不做本专业/为何投该岗/职业规划/优缺点/薪资期望/空窗期/团队冲突/压力场景）应答要点；③ 反问面试官 3 个高质量问题。"
+      ].join("\n");
+    }
+    document.getElementById("rdIntOut").innerHTML=
+      '<div class="v-sec" style="border-top:none;padding-top:6px"><div class="v-sec-t">面试准备提示词（复制 → 粘贴到豆包/AI）</div>'+
+      '<textarea class="rd-txt" id="rdIntPrompt" style="width:100%;min-height:160px;resize:vertical;font-size:12px;line-height:1.6">'+esc(p)+'</textarea>'+
+      '<button class="v-btn ghost" id="rdIntCopy" style="margin-top:8px">复制提示词</button></div>';
+    document.getElementById("rdIntCopy").addEventListener("click",function(){
+      var ta=document.getElementById("rdIntPrompt");
+      ta.select();document.execCommand("copy");
+      spToast("面试准备提示词已复制，去豆包生成模拟面试");
+    });
+  });
+}
+function renderTpl(){
+  var o=RULES.override||{},s=RULES.summary||{};
+  var rows=[
+    ["通勤上限","骑行 ≤ "+esc(o.bike_max_min)+" 分 ｜ 公交/地铁 ≤ "+esc(o.transit_max_min)+" 分"],
+    ["薪资底线","月到手 ≥ "+esc(o.salary_min_take_home)+" 元 ｜ 最高推送 "+esc(o.salary_max_push)+" 元"],
+    ["作息要求","周末至少休 "+esc(o.weekend_rest_min_days)+" 天"+(o.no_rotation?" · 不接受轮班":"")+(o.legal_holidays_off?" · 法定节假日休":"")],
+    ["技能门槛","求职者不具备："+esc((s.skill_gate&&s.skill_gate.user_lacks||[]).join(" / ")||"—")+" ｜ 硬性不推关键词 "+(s.skill_gate?s.skill_gate.block_keywords_count:0)+" 个"],
+    ["外包黑名单",(s.outsource_count||0)+" 家 ｜ 拦截开关 "+(o.block_outsource?"开启":"背景参考")],
+    ["公司黑名单",(s.company_blacklist_count||0)+" 家 ｜ 拦截开关 "+(o.block_company_blacklist?"开启":"背景参考")],
+    ["反馈学习","已排除方向 "+(s.learned_exclusion?s.learned_exclusion.length:0)+" 类（婉拒累计 ≥2 次自动排除）"],
+    ["求职方向",(s.directions||[]).map(function(d){return d.name}).join(" / ")]
+  ];
+  document.getElementById("viewTpl").innerHTML=
+    '<div class="view-title">规则模板</div>'+
+    '<div class="view-sub">把「个人私有规则」变成「别人也能用的标准模板」：导出 JSON → 对方导入 → 改参数即可，无需写规则。</div>'+
+    '<div class="v-grid">'+
+    '<div class="v-card"><h3>模板包含的规则字段<span class="cnt">'+rows.length+' 项</span></h3>'+
+      rows.map(function(r){return '<div class="v-row"><b>'+r[0]+'</b><span style="flex:1;font-size:12px;color:var(--muted)">'+r[1]+'</span></div>'}).join("")+
+    '</div>'+
+    '<div class="v-card"><h3>操作</h3>'+
+      '<div style="display:flex;flex-direction:column;gap:10px">'+
+      '<button class="v-btn" id="tplExportBtn">导出规则模板 JSON</button>'+
+      '<button class="v-btn ghost" id="tplImportBtn">去规则中心导入别人的模板</button>'+
+      '<a class="v-btn ghost" href="规则模板使用说明.md" target="_blank" rel="noopener" style="text-align:center">查看《规则模板使用说明》</a>'+
+      '</div></div>'+
+    '<div class="v-card"><h3>给别人用怎么走</h3>'+
+      '<div class="v-line">① 导出 JSON 发给对方<br>② 对方在工作台「规则中心 → 导入模板」上传<br>③ 导入前自动预览「会改哪些参数 + 岗位达标会变多少」<br>④ 确认应用后保存，即完成一次大众化规则配置</div>'+
+      '<div class="v-note" style="margin-top:10px">隐私已剥离：模板不含你的姓名 / 住址 / 岗位库，只有可参数化的规则。</div></div>'+
+    '</div>';
+  document.getElementById("tplExportBtn").addEventListener("click",function(){
+    fetch("/api/rules/export").then(function(res){return res.json()}).then(function(d){
+      if(!d.ok){spToast("导出失败："+(d.error||"未知错误"));return}
+      var blob=new Blob([JSON.stringify(d.template,null,2)],{type:"application/json"});
+      var a=document.createElement("a");
+      a.href=URL.createObjectURL(blob);
+      a.download="上岸计划-规则模板-"+new Date().toISOString().slice(0,10)+".json";
+      document.body.appendChild(a);a.click();a.remove();
+      URL.revokeObjectURL(a.href);
+      spToast("已导出规则模板 JSON，可分享给他人导入");
+    }).catch(function(err){spToast("导出失败："+err.message+"（本地服务未启动？）")});
+  });
+  document.getElementById("tplImportBtn").addEventListener("click",function(){showMainView("rules")});
+}
+var SP_VIEW="jobs";
+var VIEW_META={
+  jobs:["上岸计划 · 岗位雷达","成都 · 双流YOUR_HOME_PLACE 3 栋出发 ｜ 按你的规则筛选后的岗位"],
+  rules:["规则中心","调整保存到 override，不影响每日推送"],
+  track:["投递追踪","点击条目打开岗位原始页"],
+  stats:["数据看板","岗位库真实记录现算"],
+  resume:["简历中心","选岗位 → AI 定制简历（本地生成定制动作 + 提示词）"],
+  road:["求职路线","3 条主线 · 面试准备 · 岗位匹配"]
+};
+function showMainView(v){
+  SP_VIEW=v;
+  Array.prototype.forEach.call(document.querySelectorAll("#spEntries .sp-entry"),function(b){
+    b.classList.toggle("on",b.dataset.v===v);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".view-page"),function(p){
+    p.style.display=p.id==="view"+v.charAt(0).toUpperCase()+v.slice(1)?"":"none";
+  });
+  document.getElementById("tabsWrap").style.display=v==="jobs"?"":"none";
+  var meta=VIEW_META[v]||VIEW_META.jobs;
+  document.getElementById("mainTitle").textContent=meta[0];
+  document.getElementById("mainSub").textContent=meta[1];
+  if(v==="rules"&&RULES.summary&&RULES.summary.version){
+    document.getElementById("mainSub").textContent="权威规则 v"+RULES.summary.version+" ｜ 调整保存到 override，不影响每日推送";
+  }
+  if(v==="jobs")render();
+  else if(v==="rules"){if(!RULES._loaded){loadRules()}else renderRules();}
+  else if(v==="track")renderTrack();
+  else if(v==="stats")renderStats();
+  else if(v==="resume")renderResume();
+  else if(v==="road")renderRoad();
+}
+document.getElementById("spEntries").addEventListener("click",function(e){
+  var b=e.target.closest(".sp-entry");if(!b)return;
+  showMainView(b.dataset.v);
+  /* 移动端抽屉形态：点入口后收起面板，让右侧主区整区展示功能 */
+  if(window.innerWidth<=900){
+    document.getElementById("sidepanel").classList.remove("open");
+    document.getElementById("spMask").style.display="none";
+  }
+});
+document.getElementById("spToggle").addEventListener("click",function(){
+  var p=document.getElementById("sidepanel");
+  var open=p.classList.toggle("open");
+  document.getElementById("spMask").style.display=open?"block":"none";
+});
+document.getElementById("spMask").addEventListener("click",function(){
+  document.getElementById("sidepanel").classList.remove("open");
+  this.style.display="none";
+});
+/* 面板搜索与主区搜索联动（同一 STATE.kw） */
+function syncKw(val){
+  STATE.kw=val.trim();
+  var a=document.getElementById("kw"),b=document.getElementById("spKw");
+  if(a&&a.value!==val)a.value=val;
+  if(b&&b.value!==val)b.value=val;
+  render();
+}
+document.getElementById("spKw").addEventListener("input",function(){syncKw(this.value)});
+document.addEventListener("keydown",function(e){
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){
+    e.preventDefault();
+    var p=document.getElementById("sidepanel");p.classList.add("open");
+    document.getElementById("spMask").style.display="block";
+    document.getElementById("spKw").focus();
+  }
+});
+/* 投递按钮已与"去投递"合并为卡片上的单一「投递」链接（点击跳转岗位详情），写库动作统一走下方状态下拉 */
+var APPLY_STATES=['未投','已投','已回复','面试','婉拒','入职'];
+document.addEventListener("change",function(e){
+  var sel=e.target;
+  if(!sel.classList)return;
+  var isSt=sel.classList.contains("st-sel"),isFb=sel.classList.contains("fb-sel");
+  if(!isSt&&!isFb)return;
+  var rid=sel.getAttribute("data-r"),old=sel.getAttribute("data-old")||"";
+  var state=isSt?sel.value:(sel.getAttribute("data-ps")||"已投");
+  var fb=isFb?sel.value:"";
+  var changed=(isSt&&sel.value!==old)||(isFb&&fb!==old);
+  if(!changed){return}
+  /* 乐观更新：先改本地单一事实源并立即渲染归纳，再异步写多维表格 */
+  for(var i=0;i<JOBS.length;i++){if(JOBS[i].r===rid){
+    if(isSt){JOBS[i].ps=state;JOBS[i].ap=(state!=="未投")?1:0}
+    if(isFb)JOBS[i].fb=fb;
+    break}}
+  render();renderTrack();renderStats();renderResume();renderRoad();
+  var toast=document.getElementById("toast");
+  toast.innerHTML="本地已更新：<b>"+esc(isFb?fb:state)+"</b>，正在同步多维表格…";
+  toast.classList.add("show");
+  clearTimeout(toast._t);
+  var body={record_id:rid,state:state};
+  if(isFb){body.feedback=fb}
+  wbPost("/api/status",JSON.stringify(body))
+    .then(function(res){return res.json()})
+    .then(function(d){
+      if(d.ok){
+        toast.innerHTML="已同步：<b>"+esc(isFb?fb:state)+"</b>（多维表格已更新）";
+      }else{
+        toast.innerHTML="本地已归纳，多维表格同步失败："+esc(d.error||d.msg||"未知错误")+"（可稍后重试或到豆包补录）";
+      }
+      toast.classList.add("show");
+      clearTimeout(toast._t);
+      toast._t=setTimeout(function(){toast.classList.remove("show")},4200);
+    })
+    .catch(function(err){
+      toast.innerHTML="本地已归纳，多维表格同步失败："+esc(err.message)+"（可稍后重试或到豆包补录）";
+      toast.classList.add("show");
+      clearTimeout(toast._t);
+      toast._t=setTimeout(function(){toast.classList.remove("show")},4200);
+    });
+});
+/* ===== 规则中心 ===== */
+var RULES={override:{},summary:{},dirty:false};
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function numIn(id,val,min,max,unit){
+  return '<div class="rd-row"><span class="k">'+id+'</span><span style="display:flex;align-items:center;gap:8px"><input class="rd-num" type="number" min="'+min+'" max="'+max+'" value="'+val+'" data-k="'+id+'"><span style="font-size:11.5px;color:var(--muted)">'+unit+'</span></span></div>';
+}
+function tglRow(k,label,on){
+  return '<div class="rd-row"><span class="k">'+label+'</span><div class="rd-toggle'+(on?" on":"")+'" data-toggle="'+k+'" role="switch" aria-checked="'+(on?"true":"false")+'"></div></div>';
+}
+function listInput(field,label,arr,placeholder){
+  return '<div class="rd-row"><span class="k">'+label+'</span><input class="rd-txt" data-f="'+field+'" value="'+esc((arr||[]).join("，"))+'" placeholder="'+placeholder+'"></div>';
+}
+function dirEdit(d,i){
+  var prio=['high','medium','low'];
+  return '<div class="rd-dir-edit">'+
+    '<input class="rd-txt dir-name" data-i="'+i+'" value="'+esc(d.name||"")+'" placeholder="方向名称">'+
+    '<select class="rd-sel dir-prio" data-i="'+i+'">'+prio.map(function(p){return '<option value="'+p+'"'+(d.priority===p?' selected':'')+'>'+p+'</option>'}).join('')+'</select>'+
+    '<button class="rd-del" data-i="'+i+'" title="删除该方向">×</button>'+
+  '</div>';
+}
+function renderRules(){
+  var o=RULES.override,s=RULES.summary,h=[];
+  h.push('<div class="rd-hint">规则中心：全部规则项可直接编辑，保存后写入 <b>workbench_rules.json</b>（override），刷新保留；不影响权威 rules.json 每日推送。权威版本 v'+esc(s.version||"?")+'（'+(s.updated_at||"")+'）。</div>');
+  if((o.directions&&o.directions.length)||(s.directions&&s.directions.length)){
+    h.push('<div class="rd-sec"><div class="rd-sec-h">求职方向<span class="ver">'+(o.directions&&o.directions.length?o.directions.length:s.directions.length)+'条主线</span></div><div id="dirList" style="padding:0">');
+    (o.directions&&o.directions.length?o.directions:s.directions).forEach(function(d,i){h.push(dirEdit(d,i))});
+    h.push('</div><button class="rd-dir-add" id="addDir">＋ 添加求职方向</button></div>');
+  }
+  h.push('<div class="rd-sec"><div class="rd-sec-h">通勤硬规则<span class="ver">高德门址实测</span></div>');
+  h.push(numIn("骑行上限（分钟）",o.bike_max_min,5,120,"分"));
+  h.push(numIn("公交/地铁上限（分钟）",o.transit_max_min,10,180,"分"));
+  h.push(listInput("commute_must_measure_with","实测方式",o.commute_must_measure_with?[o.commute_must_measure_with]:(s.commute&&s.commute.must_measure_with?[s.commute.must_measure_with]:[]),"高德地图，禁止估算"));
+  h.push('</div>');
+  h.push('<div class="rd-sec"><div class="rd-sec-h">薪资硬规则<span class="ver">'+(s.salary&&s.salary.metric||"")+'</span></div>');
+  h.push(numIn("到手底线（元）",o.salary_min_take_home,1000,20000,"元"));
+  h.push(numIn("最高推送薪资（元）",o.salary_max_push,3000,50000,"元"));
+  h.push(listInput("salary_pre_tax_rule","税前判定",o.salary_pre_tax_rule?[o.salary_pre_tax_rule]:(s.salary&&s.salary.rule?[s.salary.rule]:[]),"税前换算规则说明"));
+  h.push('</div>');
+  h.push('<div class="rd-sec"><div class="rd-sec-h">作息要求<span class="ver">周末至少休'+esc(o.weekend_rest_min_days)+'天</span></div>');
+  h.push(tglRow("no_rotation","不接受轮班",o.no_rotation));
+  h.push(tglRow("legal_holidays_off","法定节假日休",o.legal_holidays_off));
+  h.push(listInput("work_schedule_exclude","作息排除",o.work_schedule_exclude&&o.work_schedule_exclude.length?o.work_schedule_exclude:(s.work_schedule&&s.work_schedule.exclude||[]),"轮班/倒班/大小周…（逗号分隔）"));
+  h.push('</div>');
+  h.push('<div class="rd-sec"><div class="rd-sec-h">排除与黑名单</div>');
+  h.push(listInput("exclude_roles_keywords","排除角色关键词",o.exclude_roles_keywords&&o.exclude_roles_keywords.length?o.exclude_roles_keywords:(s.exclude_roles_keywords||[]),"销售/客服/主播…（逗号分隔）"));
+  h.push(tglRow("block_outsource","外包黑名单拦截",o.block_outsource));
+  h.push(listInput("outsource_companies","外包公司库",o.outsource_companies&&o.outsource_companies.length?o.outsource_companies:(s.outsource_companies||[]),"公司名（逗号分隔）"));
+  h.push(tglRow("block_company_blacklist","公司黑名单拦截",o.block_company_blacklist));
+  h.push(listInput("company_blacklist_companies","公司黑名单",o.company_blacklist_companies&&o.company_blacklist_companies.length?o.company_blacklist_companies:(s.company_blacklist_companies||[]),"公司名（逗号分隔）"));
+  h.push('</div>');
+  /* 生效统计 + 仅看达标 */
+  var passN=JOBS.filter(function(j){return jobRuleFlags(j).length===0}).length;
+  h.push('<div class="rd-sec"><div class="rd-sec-h">规则生效统计<span class="ver">岗位库 '+JOBS.length+' 条</span></div>');
+  h.push('<div class="rd-row"><span class="k">当前规则达标</span><span class="v good">'+passN+' 个</span></div>');
+  h.push('<div class="rd-row"><span class="k">违反当前规则</span><span class="v '+(JOBS.length-passN?'bad':'good')+'">'+(JOBS.length-passN)+' 个</span></div>');
+  h.push(tglRow("rule_only","列表仅显示达标岗",STATE.ruleOnly));
+  h.push('</div>');
+  if(s.skill_gate||o.skill_gate_user_lacks||o.skill_gate_block_keywords||o.skill_gate_override_pass_keywords){
+    h.push('<div class="rd-sec"><div class="rd-sec-h">技能门槛<span class="ver">不推</span></div>');
+    h.push(listInput("skill_gate_user_lacks","用户不具备",o.skill_gate_user_lacks&&o.skill_gate_user_lacks.length?o.skill_gate_user_lacks:(s.skill_gate&&s.skill_gate.user_lacks||[]),"技能（逗号分隔）"));
+    h.push(listInput("skill_gate_block_keywords","硬性不推关键词",o.skill_gate_block_keywords&&o.skill_gate_block_keywords.length?o.skill_gate_block_keywords:(s.skill_gate&&s.skill_gate.block_keywords||[]),"关键词（逗号分隔）"));
+    h.push(listInput("skill_gate_override_pass_keywords","豁免词",o.skill_gate_override_pass_keywords&&o.skill_gate_override_pass_keywords.length?o.skill_gate_override_pass_keywords:(s.skill_gate&&s.skill_gate.override_pass_keywords||[]),"命中豁免词可放行"));
+    h.push('</div>');
+  }
+  if(s.learned_exclusion&&s.learned_exclusion.length){
+    h.push('<div class="rd-sec"><div class="rd-sec-h">反馈学习 · 已排除方向<span class="ver">婉拒累计≥2次</span></div><div style="padding:10px 14px">');
+    s.learned_exclusion.forEach(function(r){h.push('<div class="rd-row" style="padding:6px 0"><span class="k" style="font-size:12px">'+esc(r.pattern)+'</span><span class="rd-badge learn">婉拒×'+esc(r.reject_count)+'</span></div>')});
+    h.push('</div></div>');
+  }
+  h.push('<div class="rd-note">说明：所有字段均为可编辑；保存后立即写入 override 文件，刷新页面仍保留；权威 rules.json（每日推送使用的规则）保持不变。规则大众化＝把这份 override 做成可导出模板（见页面底部「导出模板 / 导入模板」，导出 JSON 发给对方即可用，模板已剥离姓名/住址等隐私）。</div>');
+  document.getElementById("rulesBody").innerHTML=h.join("");
+  document.querySelectorAll(".rd-toggle").forEach(function(t){t.addEventListener("click",function(){
+    var on=t.classList.toggle("on");t.setAttribute("aria-checked",String(on));
+    var k=t.getAttribute("data-toggle");
+    if(k==="no_rotation")RULES.override.no_rotation=on;
+    if(k==="legal_holidays_off")RULES.override.legal_holidays_off=on;
+    if(k==="block_outsource")RULES.override.block_outsource=on;
+    if(k==="block_company_blacklist")RULES.override.block_company_blacklist=on;
+    if(k==="rule_only"){STATE.ruleOnly=on;render();}
+    RULES.dirty=true;showSaved("已修改，点击「保存规则」生效");
+  })});
+  document.querySelectorAll(".rd-num").forEach(function(n){n.addEventListener("input",function(){
+    var k=n.getAttribute("data-k"),v=parseInt(n.value,10);
+    if(!isNaN(v)){if(k==="骑行上限（分钟）")RULES.override.bike_max_min=v;
+      else if(k==="公交/地铁上限（分钟）")RULES.override.transit_max_min=v;
+      else if(k==="到手底线（元）")RULES.override.salary_min_take_home=v;
+      else if(k==="最高推送薪资（元）")RULES.override.salary_max_push=v;
+      RULES.dirty=true;showSaved("已修改，点击「保存规则」生效");}
+  })});
+  /* 可编辑文本：input 事件实时写 override，逗号分隔拆成数组 */
+  document.querySelectorAll(".rd-txt[data-f]").forEach(function(n){n.addEventListener("input",function(){
+    var f=n.getAttribute("data-f"),v=n.value.trim();
+    var listFields={commute_must_measure_with:1,salary_pre_tax_rule:1};
+    if(listFields[f])RULES.override[f]=v;
+    else RULES.override[f]=v.split(/[，,;；\n]+/).map(function(x){return x.trim()}).filter(Boolean);
+    RULES.dirty=true;showSaved("已修改，点击「保存规则」生效");
+  })});
+  /* 求职方向：名称/优先级/删除/添加 */
+  document.querySelectorAll(".dir-name").forEach(function(n){n.addEventListener("input",function(){
+    var i=+n.getAttribute("data-i");
+    var dirs=(RULES.override.directions&&RULES.override.directions.length)?RULES.override.directions:(RULES.summary.directions||[]);
+    if(!dirs[i])return;dirs[i].name=n.value;RULES.override.directions=dirs;
+    RULES.dirty=true;showSaved("已修改，点击「保存规则」生效");
+  })});
+  document.querySelectorAll(".dir-prio").forEach(function(sl){sl.addEventListener("change",function(){
+    var i=+sl.getAttribute("data-i");
+    var dirs=(RULES.override.directions&&RULES.override.directions.length)?RULES.override.directions:(RULES.summary.directions||[]);
+    if(!dirs[i])return;dirs[i].priority=sl.value;RULES.override.directions=dirs;
+    RULES.dirty=true;showSaved("已修改，点击「保存规则」生效");
+  })});
+  document.querySelectorAll(".rd-del").forEach(function(b){b.addEventListener("click",function(){
+    var i=+b.getAttribute("data-i");
+    var dirs=(RULES.override.directions&&RULES.override.directions.length)?RULES.override.directions:(RULES.summary.directions||[]).map(function(d){return{name:d.name,priority:d.priority}});
+    dirs.splice(i,1);RULES.override.directions=dirs;
+    RULES.dirty=true;renderRules();render();showSaved("已删除方向，点击「保存规则」生效");
+  })});
+  var add=document.getElementById("addDir");
+  if(add)add.addEventListener("click",function(){
+    var dirs=(RULES.override.directions&&RULES.override.directions.length)?RULES.override.directions:(RULES.summary.directions||[]).map(function(d){return{name:d.name,priority:d.priority}});
+    dirs.push({name:"",priority:"medium"});RULES.override.directions=dirs;
+    RULES.dirty=true;renderRules();render();showSaved("已添加方向行，点击「保存规则」生效");
+  });
+}
+function showSaved(txt){
+  var el=document.getElementById("rulesSaved");el.textContent=txt;
+  clearTimeout(showSaved._t);showSaved._t=setTimeout(function(){el.textContent=""},2600);
+}
+/* 规则中心已改为主区页面视图，打开/关闭由 showMainView 处理 */
+document.getElementById("rulesReset").addEventListener("click",function(){
+  if(!confirm("恢复默认规则？当前 override 将被覆盖。"))return;
+  RULES.override={bike_max_min:30,transit_max_min:60,salary_min_take_home:5000,salary_max_push:15000,weekend_rest_min_days:1,block_outsource:false,block_company_blacklist:false,enabled:true};
+  renderRules();RULES.dirty=true;render();showSaved("已恢复默认，点击「保存规则」生效");
+});
+/* 导出规则模板：GET /api/rules/export -> 下载 JSON 文件 */
+document.getElementById("rulesExport").addEventListener("click",function(){
+  fetch("/api/rules/export").then(function(res){return res.json()}).then(function(d){
+    if(!d.ok){showSaved("导出失败："+(d.error||"未知错误"));return}
+    var blob=new Blob([JSON.stringify(d.template,null,2)],{type:"application/json"});
+    var a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);
+    a.download="上岸计划-规则模板-"+new Date().toISOString().slice(0,10)+".json";
+    document.body.appendChild(a);a.click();a.remove();
+    URL.revokeObjectURL(a.href);
+    showSaved("已导出规则模板 JSON ✓ 可分享给他人导入");
+  }).catch(function(err){showSaved("导出失败："+err.message+"（本地服务未启动？）")});
+});
+/* 导入规则模板：读文件 -> POST /api/rules/import -> 刷新 */
+document.getElementById("rulesImport").addEventListener("click",function(){
+  document.getElementById("rulesFile").click();
+});
+document.getElementById("rulesFile").addEventListener("change",function(){
+  var f=this.files[0];if(!f)return;
+  var rd=new FileReader();
+  rd.onload=function(){
+    var data;
+    try{data=JSON.parse(rd.result)}catch(e){showSaved("导入失败：文件不是合法 JSON");this.value="";return}
+    if(!data||typeof data!=="object"){showSaved("导入失败：模板结构无效");this.value="";return}
+    var src=(data.override&&typeof data.override==="object")?data.override:data;
+    var allowed={bike_max_min:1,transit_max_min:1,salary_min_take_home:1,salary_max_push:1,weekend_rest_min_days:1,block_outsource:1,block_company_blacklist:1,enabled:1};
+    var tpl={};Object.keys(allowed).forEach(function(k){if(src[k]!==undefined&&src[k]!==null)tpl[k]=src[k]});
+    if(!Object.keys(tpl).length){showSaved("导入失败：模板里没有可识别的规则字段");this.value="";return}
+    /* 预览：对比当前 override 与模板 override 的岗位达标变化 */
+    var cur=RULES.override||{};
+    var changes=[];
+    var names={bike_max_min:"骑行上限",transit_max_min:"公交/地铁上限",salary_min_take_home:"到手底线",salary_max_push:"最高推送",weekend_rest_min_days:"每周休息天数",block_outsource:"外包拦截",block_company_blacklist:"公司黑名单拦截",enabled:"规则生效开关"};
+    Object.keys(tpl).forEach(function(k){
+      var a=cur[k],b=tpl[k];
+      if(String(a)!==String(b))changes.push('<div class="pv-row"><span>'+names[k]+'</span><span>'+fmtV(a)+' → <b>'+fmtV(b)+'</b></span></div>');
+    });
+    var curPass=0,curFail=0,tplPass=0,tplFail=0,newPass=[],newFail=[];
+    JOBS.forEach(function(j){
+      var fCur=jobRuleFlagsWith(j,cur).length,fTpl=jobRuleFlagsWith(j,tpl).length;
+      if(fCur===0)curPass++;else curFail++;
+      if(fTpl===0)tplPass++;else tplFail++;
+      if(fCur>0&&fTpl===0)newPass.push(j);
+      if(fCur===0&&fTpl>0)newFail.push(j);
+    });
+    var pv=document.getElementById("rulesPreview");
+    pv.style.display="block";
+    pv.innerHTML='<div class="pv-head">导入预览 · '+esc(data.name||"未命名模板")+'</div>'+
+      '<div class="pv-sec"><div class="pv-sec-t">将修改的参数（'+changes.length+' 项）</div>'+
+      (changes.length?changes.join(""):'<div class="pv-row muted">与当前规则一致，无数字变化</div>')+'</div>'+
+      '<div class="pv-sec"><div class="pv-sec-t">对岗位库的影响（共 '+JOBS.length+' 条）</div>'+
+      '<div class="pv-row"><span>当前规则达标</span><span>'+curPass+' / 违反 '+curFail+'</span></div>'+
+      '<div class="pv-row"><span>导入后达标</span><span>'+tplPass+' / 违反 '+tplFail+'</span></div>'+
+      (newPass.length?'<div class="pv-row ok">将新增达标 '+newPass.length+' 条</div>':'')+
+      (newFail.length?'<div class="pv-row bad">将变为违反 '+newFail.length+' 条</div>':'')+
+      '</div>'+
+      '<div class="pv-actions"><button class="rd-btn ghost" id="pvCancel">取消</button><button class="rd-btn primary" id="pvApply">确认应用</button></div>';
+    RULES._pendingTpl=tpl;RULES._pendingName=data.name||"未命名模板";
+    document.getElementById("pvCancel").addEventListener("click",function(){pv.style.display="none";RULES._pendingTpl=null});
+    document.getElementById("pvApply").addEventListener("click",function(){
+      applyImportedTemplate(RULES._pendingTpl);
+      pv.style.display="none";RULES._pendingTpl=null;
+    });
+    this.value="";
+  };
+  rd.readAsText(f);
+  this.value="";
+});
+function fmtV(v){if(v===true)return"开";if(v===false)return"关";return v}
+function jobRuleFlagsWith(j,ov){
+  var b=RULES.blk||{},flags=[];
+  if(!ov.enabled)return flags;
+  var min=parseSalaryMin(j.s);
+  if(min!=null){
+    if(min<ov.salary_min_take_home)flags.push("x");
+    if(ov.salary_max_push&&min>ov.salary_max_push)flags.push("x");
+  }
+  if(j.cm>0&&j.cm>ov.bike_max_min){
+    var tt=(j.l||"")+(j.note||"");
+    var tm=tt.match(/公交\s*([\d.]+)\s*分/);
+    if(!(tm&&+tm[1]<=ov.transit_max_min))flags.push("x");
+  }
+  if(ov.block_outsource&&hitList(j.c,b.outsource))flags.push("x");
+  if(ov.block_company_blacklist&&hitList(j.c,b.company))flags.push("x");
+  if(hitList(j.t,b.roles))flags.push("x");
+  return flags;
+}
+function applyImportedTemplate(tpl){
+  wbPost("/api/rules/import",JSON.stringify({template:{override:tpl}}))
+    .then(function(res){return res.json()})
+    .then(function(d){
+      if(d.ok){
+        RULES.override=d.saved;RULES.summary=d.summary;
+        RULES.blk={outsource:d.summary.outsource_companies||[],company:d.summary.company_blacklist_companies||[],roles:d.summary.exclude_roles_keywords||[]};
+        renderRules();render();
+        showSaved("导入成功：已应用模板字段 ["+d.imported.join(", ")+"] ✓ 点「保存规则」固化");
+        RULES.dirty=true;
+      }
+      else showSaved("导入失败："+(d.error||"未知错误"));
+    }).catch(function(err){showSaved("导入失败："+err.message+"（本地服务未启动？）")});
+}
+document.getElementById("rulesSave").addEventListener("click",function(){
+  var btn=this;btn.disabled=true;btn.textContent="保存中…";
+  wbPost("/api/rules",JSON.stringify(RULES.override))
+    .then(function(res){return res.json()})
+    .then(function(d){
+      btn.disabled=false;btn.textContent="保存规则";
+      if(d.ok){RULES.override=d.saved;RULES.summary=d.summary;RULES.dirty=false;showSaved("已保存到 workbench_rules.json ✓");renderRules();render();}
+      else showSaved("保存失败："+(d.error||"未知错误"));
+    })
+    .catch(function(err){btn.disabled=false;btn.textContent="保存规则";showSaved("保存失败："+err.message+"（本地服务未启动？）")});
+});
+/* ---- 本地写操作令牌（防外部页面伪造请求；token 由同源 /api/token 下发，跨源被 CORS 拦截） ---- */
+var WB_TOK="";
+function wbHeaders(withJson){
+  var h={};
+  if(WB_TOK)h["X-Workbench-Token"]=WB_TOK;
+  if(withJson)h["Content-Type"]="application/json";
+  return h;
+}
+function wbPost(url,body){
+  return fetch(url,{method:"POST",headers:wbHeaders(true),body:body});
+}
+if(/^https?:$/.test(location.protocol)){
+  fetch("/api/token").then(function(r){return r.json()}).then(function(d){if(d.ok)WB_TOK=d.token})
+    .catch(function(){});
+}
+function seedOverrideFromSummary(o,s){
+  /* 首次加载：把权威 rules.json 的可编辑列表回填进 override，作为可编辑初始值 */
+  if(!o.directions||!o.directions.length)o.directions=(s.directions||[]).map(function(d){return{name:d.name,priority:d.priority}});
+  if(!o.commute_must_measure_with)o.commute_must_measure_with=(s.commute&&s.commute.must_measure_with)||"";
+  if(!o.salary_pre_tax_rule)o.salary_pre_tax_rule=(s.salary&&s.salary.rule)||"";
+  if(!o.work_schedule_exclude||!o.work_schedule_exclude.length)o.work_schedule_exclude=(s.work_schedule&&s.work_schedule.exclude)||[];
+  if(!o.exclude_roles_keywords||!o.exclude_roles_keywords.length)o.exclude_roles_keywords=s.exclude_roles_keywords||[];
+  if(!o.outsource_companies||!o.outsource_companies.length)o.outsource_companies=s.outsource_companies||[];
+  if(!o.company_blacklist_companies||!o.company_blacklist_companies.length)o.company_blacklist_companies=s.company_blacklist_companies||[];
+  if(!o.skill_gate_user_lacks||!o.skill_gate_user_lacks.length)o.skill_gate_user_lacks=(s.skill_gate&&s.skill_gate.user_lacks)||[];
+  if(!o.skill_gate_block_keywords||!o.skill_gate_block_keywords.length)o.skill_gate_block_keywords=(s.skill_gate&&s.skill_gate.block_keywords)||[];
+  if(!o.skill_gate_override_pass_keywords||!o.skill_gate_override_pass_keywords.length)o.skill_gate_override_pass_keywords=(s.skill_gate&&s.skill_gate.override_pass_keywords)||[];
+  return o;
+}
+function loadRules(){
+  if(!/^https?:$/.test(location.protocol)){
+    document.getElementById("rulesHint").textContent="请通过 http://localhost:8123 打开工作台（file:// 下无法读取规则）";
+    return;
+  }
+  fetch("/api/rules").then(function(res){return res.json()}).then(function(d){
+    if(d.ok){
+      RULES.override=d.override||{};
+      RULES.summary=d.summary||{};
+      seedOverrideFromSummary(RULES.override,RULES.summary);
+      RULES.blk={
+        outsource:RULES.override.outsource_companies&&RULES.override.outsource_companies.length?RULES.override.outsource_companies:(d.summary.outsource_companies||[]),
+        company:RULES.override.company_blacklist_companies&&RULES.override.company_blacklist_companies.length?RULES.override.company_blacklist_companies:(d.summary.company_blacklist_companies||[]),
+        roles:RULES.override.exclude_roles_keywords&&RULES.override.exclude_roles_keywords.length?RULES.override.exclude_roles_keywords:(d.summary.exclude_roles_keywords||[])
+      };
+      document.getElementById("rulesHint").style.display="none";
+      renderRules();render();
+    }
+    else {document.getElementById("rulesHint").textContent="加载失败："+(d.error||"未知错误");}
+  }).catch(function(err){document.getElementById("rulesHint").textContent="加载失败："+err.message+"（本地服务未启动？）"});
+}
+/* 页面启动即加载规则（用于渲染违规标记与统计） */
+loadRules();
+render();
+showMainView("jobs");
+/* 全局委托：v-item 岗位条目点击 → 打开岗位原始页（排除 select/a/button 等交互元素的误触） */
+document.addEventListener("click",function(e){
+  var it=e.target.closest(".v-item");
+  if(!it)return;
+  if(e.target.closest("select,a,button,input,label"))return;
+  var u=it.getAttribute("data-u");
+  if(u&&u.indexOf("http")===0){window.open(u,"_blank");}
+});
+</script>
+<div id="toast"></div>
+</body>
+</html>
