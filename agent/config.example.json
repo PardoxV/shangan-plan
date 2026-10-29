@@ -1,0 +1,30 @@
+{
+  "_note": "上岸计划 · 资源与环境配置（示例模板）。将本文件复制为 config.json 并填入你的值。所有 YOUR_* 均为占位符。本文件含密钥与个人ID，禁止提交到公开仓库。",
+  "version": "5.0",
+  "paths": {
+    "job_agent_dir": "<PROJECT_ROOT>/agent",
+    "resume": "<USER_DESKTOP>/你的简历.pdf",
+    "pushed_jobs": "<PROJECT_ROOT>/data/pushed_jobs.json",
+    "jobs_data_dir": "<PROJECT_ROOT>/data",
+    "ui_local_dir": "<PROJECT_ROOT>/workbench"
+  },
+  "feishu": {
+    "target_open_id": "YOUR_OPEN_ID",
+    "bitable": {
+      "base_token": "YOUR_BASE_TOKEN",
+      "table_id": "YOUR_TABLE_ID",
+      "gallery_view_id": "YOUR_VIEW_ID",
+      "url": "https://my.feishu.cn/base/YOUR_BASE_TOKEN"
+    }
+  },
+  "web_ui": {
+    "app_id": "YOUR_APP_ID",
+    "online_url": "https://example.doubaoapps.com/app/YOUR_APP_ID",
+    "data_source": "all_jobs_snapshot.ndjson"
+  },
+  "amap": {
+    "_secret": "Web服务Key，勿外传",
+    "web_service_key": "YOUR_AMAP_KEY",
+    "mcp_http": "https://mcp.amap.com/mcp?key=YOUR_AMAP_KEY"
+  }
+}

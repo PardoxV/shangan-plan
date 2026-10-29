@@ -1,0 +1,6 @@
+# 运行时依赖（按需安装；核心过滤/流水线仅依赖标准库）
+# 通勤实测需要：requests
+# 详情/抓取需要：requests, beautifulsoup4, lxml
+requests>=2.28
+beautifulsoup4>=4.11
+lxml>=4.9

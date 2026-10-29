@@ -1,0 +1,61 @@
+{
+  "name": "求职者",
+  "age": 24,
+  "education": "2025届计算机本科",
+  "resume_path": "C:\\Users\\Paradox\\Desktop\\求职者的简历.pdf",
+  "skill_profile": {
+    "coding": "不懂代码，技术类岗位（开发/算法/前后端）一律不推",
+    "ai_tools": "AI工具上手快（剪映/LibTV/Seedance等视频AI工具已用），适合AI视频/AIGC制作类",
+    "strengths": ["教学讲解能力强（高中数学讲师实习）", "逻辑清晰", "审美与文字功底（书法教师/文字类实习）", "司法局信息科实习（文档处理/信息管理）"],
+    "weak_history": "桌面运维能力弱，实习多为打杂，不推运维/网管类",
+    "target_industry": "AI行业，偏好AI视频/AI测试/AIGC创作/模型评测方向"
+  },
+  "salary_rule": {
+    "must_reach_hand": 5000,
+    "tax_pretax_ok_range": "5-7K",
+    "not_below": 4000,
+    "annot_audit_over_15k_skip": true,
+    "verify_fake": "区间max/min>1.5或明显虚标需存疑"
+  },
+  "commute_rule": {
+    "home": "成都市YOUR_HOME_PLACE（YOUR_HOME_ADDRESS）",
+    "home_coord": [104.0, 30.5],
+    "bike_max_min": 30,
+    "bus_max_min": 40,
+    "metro_with_walk_max_min": 50,
+    "must_use_detail_address": true,
+    "walk_to_station_included": true,
+    "no_electric_bike_rule": true,
+    "user_bike_slower_than_amap": "实测约慢13%"
+  },
+  "worktime_rule": {
+    "accept": ["双休", "单休", "大小周", "上四休三"],
+    "min_weekend_rest_days": 1,
+    "holiday_off": true,
+    "exclude": ["轮休", "无休", "夜班"],
+    "work_hours": ["早九晚六", "早十晚七"]
+  },
+  "excluded_job_types": ["客服", "主播", "销售", "服务员", "普通", "外卖", "送货员", "网销", "处理工单", "纯体力", "电话外呼", "强销售性质", "经常出差"],
+  "outsourcing_blacklist": ["软通动力", "法本", "人瑞", "位来无忧", "位来小猎", "位来智科", "上海仁联", "四川怡卓", "怡卓人力", "勤为科技", "蓉城蕾茗", "蕾茗科技", "泰盈", "澳鹏", "科锐尔", "思贤", "杰成人力", "金慧科技", "中软国际", "中科创达", "首聘", "金沙人力", "慧博云通", "亿达信息", "京北方"],
+  "match_rules": {
+    "high": ["AI训练师", "模型评测", "数据标注", "AIGC内容创作", "AI视频制作"],
+    "medium": ["AI内容审核", "视频审核质检", "AI测试助理"],
+    "never": ["AI工程师", "开发", "算法", "前后端"]
+  },
+  "push_preferences": {
+    "daily_time": "10:00",
+    "annot_backup_max_per_day": 2,
+    "growth_priority": true,
+    "zero_overlap_with_history": true,
+    "resend_unapplied_good_jobs": true,
+    "applied_jobs_no_resend": true,
+    "weekend_only_best": true,
+    "non_platform_min_per_day": 2,
+    "non_platform_channels": ["微信公众号", "高校官网", "政企单位", "企业招聘官网", "通用搜索兜底"]
+  },
+  "feedback_loop": {
+    "funnel_followup_days": {"follow": 3, "strengthen": 7, "abandon": 14},
+    "weekly_review": true,
+    "rule_change_impact_preview": true
+  }
+}
