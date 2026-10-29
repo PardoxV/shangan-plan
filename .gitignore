@@ -1,0 +1,6 @@
+__pycache__/
+*.db
+*.ndjson
+*.log
+config.json
+auth_log.json
