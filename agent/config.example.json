@@ -26,5 +26,11 @@
     "_secret": "Web服务Key，勿外传",
     "web_service_key": "YOUR_AMAP_KEY",
     "mcp_http": "https://mcp.amap.com/mcp?key=YOUR_AMAP_KEY"
+  },
+  "llm": {
+    "_note": "可选：AI 打招呼语（agent/greeting.py）。不配置则自动用模板兜底。DeepSeek 或任意 OpenAI 兼容 API。",
+    "api_key": "YOUR_DEEPSEEK_API_KEY",
+    "base_url": "https://api.deepseek.com",
+    "model": "deepseek-chat"
   }
 }
